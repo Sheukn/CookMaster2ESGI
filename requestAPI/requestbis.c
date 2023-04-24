@@ -2,7 +2,7 @@
 #include <curl/curl.h>
 #include <stdlib.h>
 #include <string.h>
-#include "runSpoonacular.h"
+#include "runAPI.h"
 
 
 int main(int argc, char *argv[]){
