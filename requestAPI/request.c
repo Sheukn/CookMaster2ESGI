@@ -40,7 +40,8 @@ int main(int argc, char *argv[]) {
     strcat(url, "&number=" );
     strcat(url, argv[1]);
 
-    printf("%s\n", url);
+
+    //printf("%s\n", url);
     runApi(url);
 
     free(url);
