@@ -29,6 +29,8 @@ void runApi(char *url){
             fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
         }
 
+        
+
         // Cleanup
         curl_slist_free_all(headers);
         curl_easy_cleanup(curl);
