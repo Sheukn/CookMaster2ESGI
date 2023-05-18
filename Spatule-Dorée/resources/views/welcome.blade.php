@@ -14,15 +14,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-    <title>@yield('tiltle')</title>
+    <title>@yield('title')</title>
 </head>
 
 <body>
     @include('layouts.navbarAccueil')
-
-
-
-
     <section class="banner d-flex justify-content-center align-items-center pt-5">
         <div class="container my-5 py-5">
             <div class="row">
@@ -32,8 +28,8 @@
                         Réservez votre atelier culinaire et découvrez de nouvelles saveurs!
                     </h1>
                     <p>
-                        <button class="btn btn-outline-warning">Commander maintenant</button>
-                        <button class="btn btn-warning">Reserver</button>
+                        <button type="button" class="btn btn-outline-warning">Commander maintenant</button>
+                        <button class="btn btn-outline-warning">Réserver</button>
                     </p>
                 </div>
             </div>
@@ -50,12 +46,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card-body px-0">
-                                <h3 class="card-title">Nos ateliers cuisines</h3>
+                                <h3 class="card-title">Nos cours de cuisines </h3>
                                 <p class="card-text">
-                                    Venez apprendre les secrets de la cuisine avec nos chefs professionnels
-                                    et découvrez de nouvelles saveurs à travers des cours interactifs et personnalisés.
+                                    Venez apprendre les secrets de la cuisine avec nos chefs professionnels et découvrez
+                                    de nouvelles saveurs à travers des cours interactifs et personnalisés.
                                 </p>
-                                <p class="card-text"><a href="#" class="btn btn-warning">Inscrivez-vous !</a></p>
+                                <p class="card-text"><a href="#" class="btn btn-outline-warning">Réservez</a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -67,27 +64,28 @@
                         <div class="col-md-6">
                             <div class="card-body px-0">
                                 <h3 class="card-title">Réservez dès maintenant notre salle de cuisine équipée pour vos
-                                    cours culinaires ! </h3>
+                                    cours culinaires !</h3>
                                 <p class="card-text">
-                                    Découvrez notre sélection de salles de cours de cuisine et réservez
-                                    dès maintenant pour des expériences culinaires inoubliables !
+                                    Découvrez notre sélection de salles de cours
+                                    de cuisine et réservez dès maintenant pour des expériences culinaires inoubliables !
                                 </p>
-                                <p class="card-text"><a href="#" class="btn btn-warning">Réservation</a></p>
+                                <p class="card-text"><a href="#" class="btn btn-outline-warning">Réservez !</a>
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="{{ asset('img/carousel/local-atelier.jpeg') }}" class="d-block w-100"
+                                        <img src="{{ asset('img/carousel/carousel2.jpg') }}" class="d-block w-100"
                                             alt="..." />
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="{{ asset('img/Carousel/local-atelier2.jpeg') }}" class="d-block w-100"
+                                        <img src="{{ asset('img/Carousel/carousel1.jpg') }}" class="d-block w-100"
                                             alt="..." />
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="{{ asset('img/Carousel/local-atelier3.jpeg') }}" class="d-block w-100"
+                                        <img src="{{ asset('img/Carousel/carousel3.jpg') }}" class="d-block w-100"
                                             alt="..." />
                                     </div>
                                 </div>
@@ -110,18 +108,19 @@
                 <div class="card mb-3 border-0 rounded-0">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="{{ asset('img/livraison-repas.avif') }}" class="img-fluid" alt="..." />
+                            <img src="{{ asset('img/Banniere7.jpg') }}" class="img-fluid" alt="..." />
                         </div>
                         <div class="col-md-6">
                             <div class="card-body px-0">
-                                <h3 class="card-title">Profitez d'un délicieux repas chez vous en quelques clics :
-                                    notre service de livraison à domicile est là pour vous !</h3>
+                                <h3 class="card-title">Devenez un expert de la restauration : Nos formations
+                                    professionnelles vous ouvrent les portes du succès culinaire !</h3>
                                 <p class="card-text">
-                                    Offrez-vous une pause gourmande sans quitter le confort de votre foyer avec notre
-                                    service
-                                    de livraison de repas à domicile, rapide, facile et délicieux !
+                                    Préparez-vous à embrasser une carrière passionnante dans le monde de la restauration
+                                    grâce à nos formations professionnelles
+                                    sur mesure, conçues pour vous guider vers une reconversion réussie et épanouissante.
                                 </p>
-                                <p class="card-text"><a href="#" class="btn btn-warning">Commandez !</a></p>
+                                <p class="card-text"><a href="#" class="btn btn-outline-warning">Formez-vous !</a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -144,10 +143,10 @@
                                 <a class="nav-link text-light" href="#">Petit Déjeuné</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#">Déjeuner</a>
+                                <a class="nav-link text-light" href="#">Saveurs Italiennes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#">Pâtisseries</a>
+                                <a class="nav-link text-light" href="#">L'occident</a>
                             </li>
                         </ul>
                     </div>
@@ -164,7 +163,9 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">
-
+                                This is a longer card with supporting text below as a natural lead-in to additional
+                                content. This
+                                content is a little bit longer.
                             </p>
                         </div>
                     </div>
@@ -175,7 +176,9 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">
-
+                                This is a longer card with supporting text below as a natural lead-in to additional
+                                content. This
+                                content is a little bit longer.
                             </p>
                         </div>
                     </div>
@@ -186,7 +189,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">
-
+                                This is a longer card with supporting text below as a natural lead-in to additional
+                                content.
                             </p>
                         </div>
                     </div>
@@ -197,7 +201,9 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">
-
+                                This is a longer card with supporting text below as a natural lead-in to additional
+                                content. This
+                                content is a little bit longer.
                             </p>
                         </div>
                     </div>
@@ -210,7 +216,11 @@
             <div class="row">
                 <h1 class="text-uppercase">Les délices interdits</h1>
                 <div class="col pb-4">
-
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus quae, animi recusandae quidem
+                    unde eos ipsam
+                    veniam. Aspernatur corrupti necessitatibus ipsum, laboriosam id possimus dignissimos eum vitae
+                    repellendus non
+                    delectus.
                 </div>
             </div>
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -219,28 +229,28 @@
                         <img src="assets/img/Carousel/carousel2.jpg" class="d-block w-100" alt="..." />
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Le gout de la légèreté</h5>
-                            <p></p>
+                            <p>Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="assets/img/Carousel/carousel1.jpg" class="d-block w-100" alt="..." />
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Un décors qui facilite la digestion</h5>
-                            <p></p>
+                            <p>Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="assets/img/Carousel/carousel3.jpg" class="d-block w-100" alt="..." />
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Un environnement calme et décontractant</h5>
-                            <p></p>
+                            <p>Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="assets/img/Carousel/carousel4.jpg" class="d-block w-100" alt="..." />
                         <div class="carousel-caption d-none d-md-block">
                             <h5>L'hygiène est au rendez-vous</h5>
-                            <p></p>
+                            <p>Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
                 </div>
@@ -260,7 +270,7 @@
     <section class="order-form py-5">
         <div class="container">
             <h2 class="merriweather text-center text-light mb-4">Passer une commande</h2>
-            <form>
+            <form action="" method="POST">
                 <div class="row">
                     <div class="col-md-6 col-sm">
                         <div class="input-group mb-3">
@@ -313,7 +323,11 @@
                     <div class="input-group">
                         <span class="input-group-text">Autres informations</span>
                         <textarea class="form-control" aria-label="With textarea"></textarea>
+
                     </div>
+                </div>
+                <div class="d-grid gap-2 d-md-block text-center">
+                    <button id="mon-bouton" class="btn btn-outline-warning" type="submit">Commandez</button>
                 </div>
             </form>
         </div>
