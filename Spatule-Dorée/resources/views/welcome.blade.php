@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card-body px-0">
-                                <h3 class="card-title">Nos cours de cuisines </h3>
+                                <h3 id="text-center2" class="card-title">Nos cours de cuisines </h3>
                                 <p class="card-text">
                                     Venez apprendre les secrets de la cuisine avec nos chefs professionnels et découvrez
                                     de nouvelles saveurs à travers des cours interactifs et personnalisés.
@@ -63,7 +63,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card-body px-0">
-                                <h3 class="card-title">Réservez dès maintenant notre salle de cuisine équipée pour vos
+                                <h3 id="text-center" class="card-title">Réservez dès maintenant notre salle de cuisine
+                                    équipée pour vos
                                     cours culinaires !</h3>
                                 <p class="card-text">
                                     Découvrez notre sélection de salles de cours
@@ -77,15 +78,15 @@
                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="{{ asset('img/carousel/carousel2.jpg') }}" class="d-block w-100"
+                                        <img src="{{ asset('img/carousel/local-atelier.jpeg') }}" class="d-block w-100"
                                             alt="..." />
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="{{ asset('img/Carousel/carousel1.jpg') }}" class="d-block w-100"
+                                        <img src="{{ asset('img/carousel/local-atelier2.jpeg') }}" class="d-block w-100"
                                             alt="..." />
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="{{ asset('img/Carousel/carousel3.jpg') }}" class="d-block w-100"
+                                        <img src="{{ asset('img/carousel/local-atelier3.jpeg') }}" class="d-block w-100"
                                             alt="..." />
                                     </div>
                                 </div>
@@ -105,27 +106,25 @@
                 </div>
             </div>
             <div class="row">
-                <div class="card mb-3 border-0 rounded-0">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ asset('img/Banniere7.jpg') }}" class="img-fluid" alt="..." />
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body px-0">
-                                <h3 class="card-title">Devenez un expert de la restauration : Nos formations
-                                    professionnelles vous ouvrent les portes du succès culinaire !</h3>
-                                <p class="card-text">
-                                    Préparez-vous à embrasser une carrière passionnante dans le monde de la restauration
-                                    grâce à nos formations professionnelles
-                                    sur mesure, conçues pour vous guider vers une reconversion réussie et épanouissante.
-                                </p>
-                                <p class="card-text"><a href="#" class="btn btn-outline-warning">Formez-vous !</a>
-                                </p>
-                            </div>
-                        </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('img/formation-cuisine.jpeg') }}" class="img-fluid" alt="..." />
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body px-0">
+                        <h3 id="text-center" class="card-title">Devenez un expert de la restauration : Nos formations
+                            professionnelles vous ouvrent les portes du succès culinaire !</h3>
+                        <p class="card-text">
+                            Préparez-vous à embrasser une carrière passionnante dans le monde de la restauration
+                            grâce à nos formations professionnelles
+                            sur mesure, conçues pour vous guider vers une reconversion réussie et épanouissante.
+                        </p>
+                        <p class="card-text"><a href="#" class="btn btn-outline-warning">Formez-vous !</a>
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
     </section>
 
@@ -270,7 +269,7 @@
     <section class="order-form py-5">
         <div class="container">
             <h2 class="merriweather text-center text-light mb-4">Passer une commande</h2>
-            <form action="" method="POST">
+            <form action="" method="">
                 <div class="row">
                     <div class="col-md-6 col-sm">
                         <div class="input-group mb-3">
@@ -332,65 +331,7 @@
             </form>
         </div>
     </section>
-
-    <section class="cc-footer py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4 col-sm">
-                    <h6 class="redressed ps-3 fs-5">Le Restaurant</h6>
-                    <nav class="nav flex-column">
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary active" aria-current="page"
-                            href="#">Active</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary" href="#">Link</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary" href="#">Link</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary disabled" href="#"
-                            tabindex="-1" aria-disabled="true">Disabled</a>
-                    </nav>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4 col-sm">
-                    <h6 class="redressed ps-3 fs-5">Nos Partenaire</h6>
-                    <nav class="nav flex-column">
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary active" aria-current="page"
-                            href="#">Active</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary" href="#">Link</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary" href="#">Link</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary disabled" href="#"
-                            tabindex="-1" aria-disabled="true">Disabled</a>
-                    </nav>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4 col-sm">
-                    <h6 class="redressed ps-3 fs-5">Liens utiles</h6>
-                    <nav class="nav flex-column">
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary active" aria-current="page"
-                            href="#">Active</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary" href="#">Link</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary" href="#">Link</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary disabled" href="#"
-                            tabindex="-1" aria-disabled="true">Disabled</a>
-                    </nav>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4 col-sm">
-                    <h6 class="redressed ps-3 fs-5">Nos Offres</h6>
-                    <nav class="nav flex-column">
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary active" aria-current="page"
-                            href="#">Active</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary" href="#">Link</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary" href="#">Link</a>
-                        <a class="nav-link py-1 merriweather fs-6 text-secondary disabled" href="#"
-                            tabindex="-1" aria-disabled="true">Disabled</a>
-                    </nav>
-                </div>
-                <div class="col-12 text-center py-4 text-muted">
-                    &copy; Spastule Dorée
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script>
-                    Copyright
-                </div>
-            </div>
-        </div>
-    </section>
-
+    @include('layouts.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
