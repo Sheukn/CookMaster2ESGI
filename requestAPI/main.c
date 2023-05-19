@@ -4,13 +4,10 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
+#include "parseJSON.h"
 #include "runAPI.h"
 #include "spoonacularWindow.h"
 #include "customWindow.h"
-
-void on_button_clicked(GtkWidget *widget, gpointer data){
-    g_print("%s button clicked\n", (char*)data);
-}
 
 
 

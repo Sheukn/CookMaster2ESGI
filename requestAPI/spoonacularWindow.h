@@ -1,9 +1,5 @@
-void returnToMain(GtkWidget *button, gpointer user_data) {
-    GtkStack *stack = GTK_STACK(user_data);
-    gtk_stack_set_visible_child_name(stack, "main");
-}
-
 void runSpoonacular(GtkWidget *button, gpointer user_data) {
+
     GtkWidget *window = GTK_WIDGET(user_data);
     GtkWidget *form = gtk_bin_get_child(GTK_BIN(window));
     GtkWidget *queryEntry = gtk_grid_get_child_at(GTK_GRID(form), 1, 0);
@@ -53,10 +49,29 @@ void runSpoonacular(GtkWidget *button, gpointer user_data) {
         strcat(url, number);
     }
 
-    printf("%s\n", url);
-
-    //runApi(url);
+    // printf("%s\n", url);
+    char filename[] = "output.txt";
+    runApi(url, filename);
     
+    formatToJson(filename, "spoonacularOutput.txt");
+
+    // Ouvrir le fichier JSON formaté et l'afficher
+    FILE *fp = fopen("spoonacularOutput.txt", "r");
+    if (fp == NULL) {
+        printf("Error opening file\n");
+        return;
+    }
+    char c;
+    while ((c = fgetc(fp)) != EOF) {
+        printf("%c", c);
+    }
+    fclose(fp);
+
+    remove("spoonacularOutput.txt");
+    remove("output.txt");
+    free(url);
+
+
 }
 
 void startSpoonacular(GtkWidget *button, gpointer user_data) {
