@@ -15,16 +15,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained('users');
-            $table->foreignUuid('room_id')->constrained('rooms');
-            $table->foreignUuid('contractor_id')->constrained('contractors');
+            $table->id();
+            $table->integer('user_id');
+            $table->integer('room_id');
+            $table->integer('contractor_id');
             $table->string('description');
             $table->string('price');
             $table->boolean('is_paid')->default(false);
             $table->timestamps();
         });
-
     }
 
     /**

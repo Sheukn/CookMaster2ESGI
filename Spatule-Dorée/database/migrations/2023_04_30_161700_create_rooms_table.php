@@ -15,8 +15,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('office_id')->constrained('offices');
+            $table->id();
+            $table->integer('office_id');
             $table->string('name');
             $table->string('description');
             $table->string('max_capacity');

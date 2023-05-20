@@ -15,8 +15,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rental_equipment', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('office_id')->references('id')->on('offices');
+            $table->id();
+            $table->integer('office_id');
             $table->string('name');
             $table->string('description');
             $table->string('price');

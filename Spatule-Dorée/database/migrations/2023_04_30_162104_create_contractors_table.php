@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contractors', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name');
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('postal_code');
             $table->string('city');
             $table->string('country');
-         //   $table->string('password'); // A voir si on mets un front spécialisé pour les prestataires
+            //   $table->string('password'); // A voir si on mets un front spécialisé pour les prestataires
             $table->string('company_name');
             $table->string('line_of_business');
             $table->timestamps();
