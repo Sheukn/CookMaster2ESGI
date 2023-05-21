@@ -15,17 +15,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('user_id');
+            $table->id();
+            $table->integer('user_id');
             $table->integer('subscription_type');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('subscription_price');
             $table->timestamps();
-        });
-
-        Schema::table('subscriptions', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
