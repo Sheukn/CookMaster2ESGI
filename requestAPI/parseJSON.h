@@ -8,7 +8,7 @@ void formatToJson(char* file, char* outputFile){
         exit(1);
     }
 
-    // Lire le fichier json et le mettre dans une variable
+    // Lire le fichier json et stocker son contenu 
     char * json = (char *) malloc(100000 * sizeof(char));
     char line[1000];
     while (fgets(line, sizeof(line), jsonFile)) {
@@ -61,7 +61,8 @@ void formatToJson(char* file, char* outputFile){
         i++;
     }
     strcat(parsed, "\n");
-    // print the parsed json in file
+    
+    // Ecrire le fichier json formaté
     
     FILE *fp;
     fp = fopen(outputFile, "w");
