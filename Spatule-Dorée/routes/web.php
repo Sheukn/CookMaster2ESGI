@@ -34,6 +34,10 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login.aut
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
+Route::get('/admin/create', 'AdminController@create')->name('admin.create');
+Route::post('/admin', 'AdminController@store')->name('admin.store');
+
+
 //On affiche une page d'avertissement au cas ou l'user n'a pas vérifié son email
 // Route::get('/emails/verify', function () {
 //     return view('emails.verify');

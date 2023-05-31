@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('firstname');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -21,6 +22,8 @@ return new class extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('phone');
+            $table->date('date_of_birth')->nullable();
+            $table->integer('age')->nullable();
             $table->string('password');
             $table->string('referral_code')->nullable();
             $table->boolean('is_admin')->default(false);

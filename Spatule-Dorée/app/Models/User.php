@@ -22,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
+        'firstname',
         'name',
         'email',
         'password',
@@ -49,12 +50,16 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'date_of_birth' => 'date',
     ];
 
     public static function create(array $data)
     {
         $user = new static;
+        $user->firstname = $data['firstname'];
         $user->name = $data['name'];
+        $user->date_of_birth = $data['date_of_birth'];
+        $user->age = $data['age'];
         $user->email = $data['email'];
         $user->address = $data['address'];
         $user->postal_code = $data['postal_code'];
