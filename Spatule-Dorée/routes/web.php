@@ -1,12 +1,13 @@
 <?php
 
-
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use Database\Seeders\AdminUserSeeder;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -34,8 +35,15 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login.aut
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/admin/create', 'AdminController@create')->name('admin.create');
-Route::post('/admin', 'AdminController@store')->name('admin.store');
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+});
 
 
 //On affiche une page d'avertissement au cas ou l'user n'a pas vérifié son email

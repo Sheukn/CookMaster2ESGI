@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{{ URL('/') }}">Spatule Dorée</a>
+            <a class="navbar-brand" href="{{ URL('/') }}">CookMaster</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,6 +37,7 @@
                                 {{ Auth::user()->firstname }}
                             </a>
                             <ul class="dropdown-menu">
+                                <li> <a class="dropdown-item" href="{{ route('admin.users.index') }}">Utilisateurs</a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Logout</a>

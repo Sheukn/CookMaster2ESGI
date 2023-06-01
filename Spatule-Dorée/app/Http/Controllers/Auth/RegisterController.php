@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+//use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -35,8 +35,8 @@ class RegisterController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'date_of_birth' => ['required', 'date', 'before_or_equal:' . date('Y-m-d', strtotime('-18 years'))],
-            'age' => ['required', 'integer', 'min:18'],
+            //'date_of_birth' => ['required', 'date', 'before_or_equal:' . date('Y-m-d', strtotime('-18 years'))],
+            //'age' => ['required', 'integer', 'min:18'],
             'postal_code' => ['required', 'integer', 'min:5'],
             'city' => ['required', 'string', 'max:255'],
             'country' => ['required', 'string', 'max:255'],
@@ -51,8 +51,8 @@ class RegisterController extends Controller
             'firstname' => $validatedData['firstname'],
             'name' => $validatedData['name'],
             'address' => $validatedData['address'],
-            'date_of_birth' => $validatedData['date_of_birth'],
-            'age' => $validatedData['age'],
+            //'date_of_birth' => $validatedData['date_of_birth'],
+            //'age' => $validatedData['age'],
             'postal_code' => $validatedData['postal_code'],
             'city' => $validatedData['city'],
             'country' => $validatedData['country'],

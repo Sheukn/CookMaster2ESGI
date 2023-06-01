@@ -46,7 +46,7 @@
                 </nav>
             </div>
             <div class="col-12 text-center py-4 text-muted">
-                &copy; Spastule Dorée
+                &copy; Cook Master
                 <script>
                     document.write(new Date().getFullYear());
                 </script>

@@ -50,7 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'date_of_birth' => 'date',
+        'is_admin' => 'boolean',
+        'is_ban' => 'boolean'
     ];
 
     public static function create(array $data)
@@ -58,8 +59,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $user = new static;
         $user->firstname = $data['firstname'];
         $user->name = $data['name'];
-        $user->date_of_birth = $data['date_of_birth'];
-        $user->age = $data['age'];
+        //$user->date_of_birth = $data['date_of_birth'];
+        //$user->age = $data['age'];
         $user->email = $data['email'];
         $user->address = $data['address'];
         $user->postal_code = $data['postal_code'];
@@ -67,6 +68,10 @@ class User extends Authenticatable implements MustVerifyEmail
         $user->country = $data['country'];
         $user->phone = $data['phone'];
         $user->password = $data['password'];
+        $user->is_admin = $data['is_admin'];
+
+
+
 
         $user->save();
 

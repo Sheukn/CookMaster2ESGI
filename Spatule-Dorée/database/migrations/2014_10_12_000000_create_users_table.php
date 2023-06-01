@@ -22,11 +22,10 @@ return new class extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('phone');
-            $table->date('date_of_birth')->nullable();
-            $table->integer('age')->nullable();
             $table->string('password');
             $table->string('referral_code')->nullable();
             $table->boolean('is_admin')->default(false);
+            $table->boolean('is_ban')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
