@@ -1,0 +1,103 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:layout_weight="0.2"
+            app:srcCompat="@drawable/spatule" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#FFDB1F"
+            android:fontFamily="@font/jfont"
+            android:gravity="center"
+            android:text="CONNEXION"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_weight="0.8"/>
+    </LinearLayout> <!-- First LinearLayout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="24dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jfont"
+            android:text="Identifiant"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/identifiant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your Name"
+            android:textColorHint="#635B5B"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jfont"
+            android:text="Mot de passe"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your password"
+            android:textColorHint="#635B5B"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jfont"
+            android:text="Mot de passe oublié"
+            android:textColor="#2196F3"
+            android:clickable="true"
+            />
+
+
+
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Connexion"
+            android:backgroundTint="@color/gold"
+            android:textColor="@color/black"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout><!-- Last LinearLayout -->
