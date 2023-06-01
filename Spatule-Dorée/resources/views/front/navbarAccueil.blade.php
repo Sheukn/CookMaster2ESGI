@@ -22,7 +22,7 @@
                     <a class="nav-link" href="register">Inscription</a>
                 </li>
                 <li class="nav-item pe-4">
-                    <a class="nav-link" href="#">Se connecter</a>
+                    <a class="nav-link" href="login">Se connecter</a>
                 </li>
             </ul>
         </div>

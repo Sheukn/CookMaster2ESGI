@@ -1,7 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +24,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-require __DIR__ . '/auth.php';
+Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+Route::get('/admin/create', 'AdminController@create')->name('admin.create');
+Route::post('/admin', 'AdminController@store')->name('admin.store');
+
+
+//On affiche une page d'avertissement au cas ou l'user n'a pas vérifié son email
+// Route::get('/emails/verify', function () {
+//     return view('emails.verify');
+// })->middleware('auth')->name('verification.notice');
+
+// //On traite la vérification de l'email
+// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+//     $request->fulfill();
+
+//     return redirect('/home');
+// })->middleware(['auth', 'signed'])->name('verification.verify');
+
+// //En cas de non reception de l'email de vérification
+// Route::post('/email/verification-notification', function (Request $request) {
+//     $request->user()->sendEmailVerificationNotification();
+
+//     return back()->with('message', 'Verification link sent!');
+// })->middleware(['auth', 'throttle:6,1'])->name('verification.send');

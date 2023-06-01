@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
-//use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'firstname',
         'name',
         'email',
         'password',
@@ -47,19 +50,23 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'date_of_birth' => 'date',
     ];
 
     public static function create(array $data)
     {
         $user = new static;
+        $user->firstname = $data['firstname'];
         $user->name = $data['name'];
+        $user->date_of_birth = $data['date_of_birth'];
+        $user->age = $data['age'];
         $user->email = $data['email'];
         $user->address = $data['address'];
         $user->postal_code = $data['postal_code'];
         $user->city = $data['city'];
         $user->country = $data['country'];
         $user->phone = $data['phone'];
-        $user->password = Hash::make($data['password']);
+        $user->password = $data['password'];
 
         $user->save();
 
