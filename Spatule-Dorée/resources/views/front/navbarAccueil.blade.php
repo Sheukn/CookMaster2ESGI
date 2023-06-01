@@ -1,6 +1,6 @@
 <nav class="cc-navbar navbar navbar-expand-lg navbar-dark position-fixed w-100">
     <div class="container-fluid">
-        <a class="navbar-brand text-uppercase mx-4 py-3 fw-bolder" href="">Spatule Dorée</a>
+        <a class="navbar-brand text-uppercase mx-4 py-3 fw-bolder" href="">CookMaster</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -11,9 +11,7 @@
                 <li class="nav-item pe-4">
                     <a class="nav-link" aria-current="page" href="#">Accueil</a>
                 </li>
-                <li class="nav-item pe-4">
-                    <a class="nav-link" href="#">Découvrir</a>
-                </li>
+
                 <li class="nav-item pe-4">
                     <a class="nav-link" href="#">Nos matériels de cuisines</a>
                 </li>
