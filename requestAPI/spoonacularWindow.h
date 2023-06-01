@@ -15,6 +15,11 @@ void runSpoonacular(GtkWidget *button, gpointer user_data) {
     const char *diet = gtk_entry_get_text(GTK_ENTRY(dietEntry));
     const char *intolerances = gtk_entry_get_text(GTK_ENTRY(intolerancesEntry));
     const char *number = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(numberEntry));
+
+    // Load the file into the text view
+    GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textView));
+    gtk_text_buffer_set_text(buffer, "", -1);
+
     
 
     // printf("Query: %s\n", query);
@@ -54,15 +59,12 @@ void runSpoonacular(GtkWidget *button, gpointer user_data) {
 
     // printf("%s\n", url);
     char filename[] = "output.txt";
-    runApi(url, filename);
+    runApi(url, filename, buffer);
     
     formatToJson(filename, "outputJson.txt");
 
 
-    // Load the file into the text view
-    GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textView));
-    gtk_text_buffer_set_text(buffer, "", -1);
-
+    
     FILE *fp;
     char line[1000];
     fp = fopen("outputJson.txt", "r");

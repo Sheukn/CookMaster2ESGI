@@ -1,0 +1,20 @@
+Application Java
+	Rapport graphique
+		Comptes clients et abonnements
+		Evenements et planifications
+		Prestation
+		Diagramme stats gestion clients
+		Diagramme stats évenements
+		Diagramme stats prestations
+
+Application Android
+	Connexion - Création de compte
+	Gestion de l'abonnement
+	Inscription aux évenements
+	Accès au recette dépendant de l'abonnement
+
+	Gestion de fidélité à travers un numéro client
+	NFC permettant de identifier sans connexion l'utilisateur
+
+
+Toutes les applications seront faites en Java afin de faciliter le maintien des applications
