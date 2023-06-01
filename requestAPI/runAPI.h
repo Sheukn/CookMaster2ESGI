@@ -6,7 +6,7 @@ size_t write_callback(char *ptr, size_t size, size_t nmemb, void *userdata) {
 }
 
 
-void runApi(char *url, char *filename) {
+void runApi(char *url, char *filename, GtkTextBuffer *buffer) {
     CURL *curl;
     CURLcode res;
     
@@ -36,7 +36,7 @@ void runApi(char *url, char *filename) {
         // Perform the request
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
-            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+            gtk_text_buffer_set_text(buffer, "Erreur dans la requete", -1);
         }
 
         // Cleanup

@@ -2,8 +2,7 @@ void runCustom(GtkWidget *button, gpointer user_data) {
     GtkWidget *window = GTK_WIDGET(user_data);
     GtkWidget *form = gtk_bin_get_child(GTK_BIN(window));
     GtkWidget *urlEntry = gtk_grid_get_child_at(GTK_GRID(form), 1, 0);
-    // GtkWidget *methodEntry = gtk_grid_get_child_at(GTK_GRID(form), 1, 1);
-    GtkWidget *apiKeyEntry = gtk_grid_get_child_at(GTK_GRID(form), 1, 2);
+
     GtkWidget *parameter1Name = gtk_grid_get_child_at(GTK_GRID(form), 1, 4);
     GtkWidget *parameter1Value = gtk_grid_get_child_at(GTK_GRID(form), 2, 4);
     GtkWidget *parameter2Name = gtk_grid_get_child_at(GTK_GRID(form), 1, 5);
@@ -14,8 +13,7 @@ void runCustom(GtkWidget *button, gpointer user_data) {
     GtkWidget *textView = gtk_bin_get_child(GTK_BIN(scrolledView));
 
     const char *url = gtk_entry_get_text(GTK_ENTRY(urlEntry));
-    // const char *method = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(methodEntry));
-    const char *apiKey = gtk_entry_get_text(GTK_ENTRY(apiKeyEntry));
+    
     const char *parameter1 = gtk_entry_get_text(GTK_ENTRY(parameter1Name));
     const char *parameter1Val = gtk_entry_get_text(GTK_ENTRY(parameter1Value));
     const char *parameter2 = gtk_entry_get_text(GTK_ENTRY(parameter2Name));
@@ -23,14 +21,14 @@ void runCustom(GtkWidget *button, gpointer user_data) {
     const char *parameter3 = gtk_entry_get_text(GTK_ENTRY(parameter3Name));
     const char *parameter3Val = gtk_entry_get_text(GTK_ENTRY(parameter3Value));
 
-    if (strcmp(url,"") == 0 || strcmp(apiKey, "") == 0)
-        printf("URL or API Key are required\n");
+    GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textView));
+    gtk_text_buffer_set_text(buffer, "", -1);
 
+    if (strcmp(url,"") == 0)
+        gtk_text_buffer_insert_at_cursor(buffer, "An URL is required\n", -1);      
     else {
         char *fullUrl = (char *) malloc(1000 * sizeof(char));
         strcpy(fullUrl, url);
-        strcat(fullUrl, "?apiKey=");
-        strcat(fullUrl, apiKey);
         if (strcmp(parameter1, "") != 0 && strcmp(parameter1Val, "") != 0) {
             strcat(fullUrl, "&");
             strcat(fullUrl, parameter1);
@@ -51,14 +49,13 @@ void runCustom(GtkWidget *button, gpointer user_data) {
         }
 
         char filename[] = "output.txt";
-        runApi(fullUrl, filename);
+        runApi(fullUrl, filename, buffer);
         
         formatToJson(filename, "outputJson.txt");
 
 
         // Load the file into the text view
-        GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textView));
-        gtk_text_buffer_set_text(buffer, "", -1);
+        
 
         FILE *fp;
         char line[1000];
@@ -115,10 +112,10 @@ void startCustomWindow(GtkWidget *button, gpointer user_data){
     // gtk_grid_attach(GTK_GRID(form), method, 0, 1, 1, 1);
     // gtk_grid_attach(GTK_GRID(form), methodEntry, 1, 1, 1, 1);
 
-    GtkWidget *apiKey = gtk_label_new("API Key :");
-    GtkWidget *apiKeyEntry = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID(form), apiKey, 0, 2, 1, 1);
-    gtk_grid_attach(GTK_GRID(form), apiKeyEntry, 1, 2, 1, 1);
+    // GtkWidget *apiKey = gtk_label_new("API Key :");
+    // GtkWidget *apiKeyEntry = gtk_entry_new();
+    // gtk_grid_attach(GTK_GRID(form), apiKey, 0, 2, 1, 1);
+    // gtk_grid_attach(GTK_GRID(form), apiKeyEntry, 1, 2, 1, 1);
 
 
     GtkWidget *parameters = gtk_label_new("Parameters :");
