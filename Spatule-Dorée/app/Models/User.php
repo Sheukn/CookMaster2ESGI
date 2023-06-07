@@ -1,26 +1,41 @@
 <?php
 
+
+
 namespace App\Models;
 
+
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
+use Illuminate\Notifications\Notifiable;
+
+use Laravel\Sanctum\HasApiTokens;
 
 
 
 class User extends Authenticatable implements MustVerifyEmail
+
 {
+
     use HasApiTokens, HasFactory, Notifiable;
 
 
 
     /**
+
      * The attributes that are mass assignable.
+
      *
-     * @var array
+
+     * @var array<int, string>
+
      */
+
     protected $fillable = [
         'firstname',
         'name',
@@ -31,50 +46,44 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'country',
         'phone',
+
     ];
 
+
+
     /**
+
      * The attributes that should be hidden for serialization.
+
      *
-     * @var array
+
+     * @var array<int, string>
+
      */
+
     protected $hidden = [
+
         'password',
         'remember_token',
+
     ];
+
+
 
     /**
+
      * The attributes that should be cast.
+
      *
-     * @var array
+
+     * @var array<string, string>
+
      */
+
     protected $casts = [
+
         'email_verified_at' => 'datetime',
-        'is_admin' => 'boolean',
-        'is_ban' => 'boolean'
+
+
     ];
-
-    public static function create(array $data)
-    {
-        $user = new static;
-        $user->firstname = $data['firstname'];
-        $user->name = $data['name'];
-        //$user->date_of_birth = $data['date_of_birth'];
-        //$user->age = $data['age'];
-        $user->email = $data['email'];
-        $user->address = $data['address'];
-        $user->postal_code = $data['postal_code'];
-        $user->city = $data['city'];
-        $user->country = $data['country'];
-        $user->phone = $data['phone'];
-        $user->password = $data['password'];
-        $user->is_admin = $data['is_admin'];
-
-
-
-
-        $user->save();
-
-        return $user;
-    }
 }

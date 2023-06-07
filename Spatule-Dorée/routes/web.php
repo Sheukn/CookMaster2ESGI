@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Database\Seeders\AdminUserSeeder;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
-use Database\Seeders\AdminUserSeeder;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -25,15 +26,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes(['verify' => true]);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-Route::get('/login', [LoginController::class, 'create'])->name('login.create');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+// Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+// Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+// Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+// Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+// Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+// });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -43,7 +51,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::post('/users/{id}', [UserController::class, 'ban'])->name('users.ban');
 });
+
 
 
 //On affiche une page d'avertissement au cas ou l'user n'a pas vérifié son email

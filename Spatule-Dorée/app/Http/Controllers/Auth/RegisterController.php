@@ -2,68 +2,84 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use App\Models\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-//use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+
     /**
-     * Affiche un formulaire d'inscription.
+     * Where to redirect users after registration.
      *
-     * @return \Illuminate\Http\Response
+     * @var string
      */
-    public function create()
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        return view('auth.register');
+        $this->middleware('guest');
     }
 
     /**
-     * Valide la date de naissance.
+     * Get a validator for an incoming registration request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
      */
-
-    public function store(Request $request)
+    protected function validator(array $data)
     {
-
-        $validatedData = $request->validate([
+        return Validator::make($data, [
             'firstname' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            //'date_of_birth' => ['required', 'date', 'before_or_equal:' . date('Y-m-d', strtotime('-18 years'))],
-            //'age' => ['required', 'integer', 'min:18'],
-            'postal_code' => ['required', 'integer', 'min:5'],
+            'postal_code' => ['required', 'int', 'min:5'],
             'city' => ['required', 'string', 'max:255'],
             'country' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:10'],
+            'phone' => ['required', 'numeric', 'min:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-
-
         ]);
+    }
 
-        $user = User::create([
-            'firstname' => $validatedData['firstname'],
-            'name' => $validatedData['name'],
-            'address' => $validatedData['address'],
-            //'date_of_birth' => $validatedData['date_of_birth'],
-            //'age' => $validatedData['age'],
-            'postal_code' => $validatedData['postal_code'],
-            'city' => $validatedData['city'],
-            'country' => $validatedData['country'],
-            'phone' => $validatedData['phone'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'firstname' => $data['firstname'],
+            'address' => $data['address'],
+            'postal_code' => $data['postal_code'],
+            'city' => $data['city'],
+            'country' => $data['country'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
-
-        Auth::login($user);
-
-        return redirect()->route('dashboard')
-            ->with('success', 'Vous vous êtes inscrit et connecté avec succès !');
     }
 }

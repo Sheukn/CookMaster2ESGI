@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4">Utilisateurs</h1>
+        <h1 class="mb-4">Liste des utilisateurs</h1>
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -15,14 +15,11 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-
                     <th>id</th>
                     <th>firstname</th>
                     <th>name</th>
                     <th>Email</th>
                     <th>Actions</th>
-
-
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +37,11 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                            <form action="{{ route('admin.users.ban', $user->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-warning"
+                                    onclick="return confirm('Are you sure you want to ban this user?')">Ban</button>
                             </form>
                         </td>
                     </tr>

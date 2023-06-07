@@ -8,6 +8,11 @@ use App\Models\User; // Importer le modèle User si nécessaire
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -93,5 +98,19 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')
             ->with('success', 'User deleted successfully.'); // Rediriger vers la liste des utilisateurs avec un message de succès
+    }
+
+    /**
+     * Ban the specified user.
+     */
+    public function ban(string $id)
+    {
+        $user = User::findOrFail($id); // Trouver l'utilisateur correspondant à l'ID fourni
+
+        $user->is_banned = true; // Marquer l'utilisateur comme banni
+        $user->save(); // Sauvegarder les modifications dans la base de données
+
+        return redirect()->route('admin.users.show', $user->id)
+            ->with('success', 'User banned successfully.'); // Rediriger vers la page de détails de l'utilisateur avec un message de succès
     }
 }
