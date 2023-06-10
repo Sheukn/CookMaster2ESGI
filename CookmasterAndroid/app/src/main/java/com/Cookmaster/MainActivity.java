@@ -46,14 +46,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Quitter")
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                        .setTitle(getResources().getString(R.string.leavePopupTitle))
+                        .setMessage(getResources().getString(R.string.leavePopupMessage))
+                        .setPositiveButton(getResources().getString(R.string.leavePopupYes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 finish();
                             }
                         })
-                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getResources().getString(R.string.leavePopupNo), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 

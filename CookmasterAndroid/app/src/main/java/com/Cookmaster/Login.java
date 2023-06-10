@@ -3,11 +3,13 @@ package com.Cookmaster;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
@@ -30,17 +32,20 @@ public class Login extends AppCompatActivity {
         this.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(Login.this)
-                        .setTitle("test")
-                        .setMessage(identifiant.getText() + "\n" + password.getText())
-                        .show();
-            }
-        });
+                Intent intent = new Intent(Login.this, Courses.class);
+                if(identifiant.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
 
-        this.forgot_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Do something
+                    if (identifiant.getText().toString().isEmpty())
+                        identifiant.setError("Veuillez entrer un identifiant");
+
+                    if (password.getText().toString().isEmpty())
+                        password.setError("Veuillez entrer un mot de passe");
+
+                } else {
+                    intent.putExtra("id", identifiant.getText().toString());
+                    intent.putExtra("password", password.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
 
