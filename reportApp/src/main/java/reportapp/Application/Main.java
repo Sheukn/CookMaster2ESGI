@@ -8,7 +8,7 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(""));
+            Parent root = FXMLLoader.load(getClass().getResource("/Application/Main.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
