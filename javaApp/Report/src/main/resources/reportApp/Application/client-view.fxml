@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="696.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportApp.Application.ClientView">
+    <BarChart fx:id="subChart" layoutX="79.0" layoutY="14.0" prefHeight="300.0" prefWidth="400.0" title="Répartition Abonnements">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+    </BarChart>
+    <LineChart fx:id="SellsChart" layoutX="79.0" layoutY="314.0" prefHeight="300.0" prefWidth="400.0" title="Nombre De Ventes">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+    </LineChart>
+    <PieChart fx:id="revenueChart" layoutX="544.0" layoutY="14.0" prefHeight="300.0" prefWidth="400.0" title="Répartition CA" />
+    <Button layoutX="479.0" layoutY="651.0" mnemonicParsing="false" onAction="#generate" text="Generate" />
+   <StackedBarChart fx:id="userChart" layoutX="544.0" layoutY="314.0" prefHeight="300.0" prefWidth="400.0" title="Nombre de visites">
+     <xAxis>
+       <CategoryAxis side="BOTTOM" />
+     </xAxis>
+     <yAxis>
+       <NumberAxis side="LEFT" />
+     </yAxis>
+   </StackedBarChart>
+</AnchorPane>
