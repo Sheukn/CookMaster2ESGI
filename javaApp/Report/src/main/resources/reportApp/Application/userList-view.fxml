@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportApp.Application.userListController">
+   <children>
+      <TableView fx:id="userList" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1022.0">
+        <columns>
+          <TableColumn fx:id="idCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="165.0" text="ID" />
+          <TableColumn fx:id="nomCol" maxWidth="166.0" minWidth="-1.0" prefWidth="166.0" text="Nom" />
+            <TableColumn fx:id="prenomCol" maxWidth="143.0" minWidth="-1.0" prefWidth="143.0" text="Prenom" />
+            <TableColumn fx:id="mailCol" maxWidth="223.0" minWidth="-Infinity" prefWidth="215.0" text="Mail" />
+            <TableColumn fx:id="subCol" maxWidth="349.0" minWidth="-1.0" prefWidth="171.0" text="Abonemment" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

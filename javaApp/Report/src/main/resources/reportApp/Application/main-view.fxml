@@ -4,27 +4,24 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="823.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane cache="true" layoutX="15.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1022.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane cache="true" layoutX="14.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" scaleShape="false" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Clients Stats">
                <content>
                   <fx:include source="client-view.fxml" />
                </content>
             </Tab>
-            <Tab text="Events Stats" />
+            <Tab text="Users Stats">
+               <content>
+                  <fx:include source="userList-view.fxml" />
+               </content>
+            </Tab>
             <Tab text="Prestation Stats" />
          </tabs>
       </TabPane>
-      <Text layoutX="384.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report Application">
-         <font>
-            <Font size="42.0" />
-         </font>
-      </Text>
    </children>
    <opaqueInsets>
       <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
