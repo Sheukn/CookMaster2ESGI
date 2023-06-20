@@ -27,15 +27,12 @@ void formatToJson(char* file, char* outputFile){
         char ch = json[i];
 
         if (ch == '{' || ch == '[') {
-            strncat(parsed, &ch, 1);
-            strcat(parsed, "\n");
             indent++;
             newLine = 1;
             for (int j = 0; j < indent; j++) {
                 strcat(parsed, "    ");
             }
         } else if (ch == '}' || ch == ']') {
-            strcat(parsed, "\n");
             indent--;
             for (int j = 0; j < indent; j++) {
                 strcat(parsed, "    ");
