@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CookMasterApplication</string>
+
+    <string name="leavePopupTitle">Quitter ?</string>
+    <string name="leavePopupMessage">Etes vous sur ?</string>
+    <string name="leavePopupYes">Yes</string>
+    <string name="leavePopupNo">No</string>
+</resources>
