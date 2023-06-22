@@ -1,5 +1,7 @@
 package reportApp.Application;
 
+import java.io.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -7,6 +9,9 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.StackedBarChart;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class ClientView {
 
@@ -28,6 +33,9 @@ public class ClientView {
     // For the sake of simplicity, the data is generated randomly
     // In a real application, the data would be retrieved from a database
 
+    String filepath = "./testData/data.json";
+
+
     @FXML
     void generate(ActionEvent event) {
         // Clear the charts
@@ -35,12 +43,40 @@ public class ClientView {
         revenueChart.getData().clear();
         subChart.getData().clear();
         userChart.getData().clear();
+        filepath = (new File(filepath).getAbsolutePath()).toString();
+        // Read the data from the json file
+        try(FileReader fileReader = new FileReader(filepath)){
+
+            JsonElement jsonElement = JsonParser.parseReader(fileReader);
+            JsonObject jsonObject = jsonElement.getAsJsonObject();
+            JsonElement propertyValue = jsonObject.get("stats");
+
+            XYChart.Series link = new XYChart.Series<>();
+            XYChart.Series pub = new XYChart.Series<>();
+
+            // Add data to the user chart
+            for (JsonElement element : propertyValue.getAsJsonArray()) {
+                JsonObject stats = element.getAsJsonObject();
+                String month = stats.get("month").getAsString();
+                int linkCount = stats.get("linkCount").getAsInt();
+                int pubCount = stats.get("pubCount").getAsInt();
+                link.setName("Liens");
+                link.getData().add(new XYChart.Data(month, linkCount));
+                pub.setName("Publicités");
+                pub.getData().add(new XYChart.Data(month, pubCount));
+            }
+            userChart.getData().add(link);
+            userChart.getData().add(pub);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
         // Add data to the revenue chart
         XYChart.Series or = new XYChart.Series<>();
         XYChart.Series argent = new XYChart.Series<>();
         XYChart.Series bronze = new XYChart.Series<>();
-        for (int i = 0; i < months.length; i++) {
+        for (int i = 6; i < months.length; i++) {
             or.setName("Or");
             or.getData().add(new XYChart.Data(months[i], (int)(Math.random()*100)));
             argent.setName("Argent");
@@ -49,22 +85,22 @@ public class ClientView {
             bronze.getData().add(new XYChart.Data(months[i], (int)(Math.random()*100)));
         }
 
-        // Add data to the views chart
-        XYChart.Series link = new XYChart.Series<>();
-        XYChart.Series pub = new XYChart.Series<>();
-        for (int i = 0; i < months.length; i++) {
-            link.setName("Lien direct");
-            link.getData().add(new XYChart.Data(months[i], (int)(Math.random()*100)));
-            pub.setName("Publicité");
-            pub.getData().add(new XYChart.Data(months[i], (int)(Math.random()*100)));
-        }
-
         // Add data to the sells chart
+        // Set legend names
+
         XYChart.Series sell = new XYChart.Series<>();
+        sell.setName("Ventes");
         for (int i = 0; i < months.length; i++) {
-            sell.setName("Ventes");
             sell.getData().add(new XYChart.Data(months[i], (int)(Math.random()*100)));
         }
+        SellsChart.getData().add(sell);
+
+
+//        XYChart.Series sell = new XYChart.Series<>();
+//        for (int i = 0; i < months.length; i++) {
+//            sell.setName("Ventes");
+//            sell.getData().add(new XYChart.Data(months[i], (int)(Math.random()*100)));
+//        }
 
         // Add data to the revenue chart
         PieChart.Data premiumData = new PieChart.Data("Premium", (int)(Math.random()*100));
@@ -81,9 +117,6 @@ public class ClientView {
         subChart.getData().add(or);
         subChart.getData().add(argent);
         subChart.getData().add(bronze);
-        userChart.getData().add(link);
-        userChart.getData().add(pub);
-        SellsChart.getData().add(sell);
         revenueChart.getData().add(premiumData);
         revenueChart.getData().add(Sells);
         revenueChart.getData().add(pubData);

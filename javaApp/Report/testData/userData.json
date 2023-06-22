@@ -1,0 +1,32 @@
+{
+  "User": [
+    {
+      "id": 12651532,
+      "name": "Jhon",
+      "firstname": "Doe",
+      "email": "random@email.com",
+      "subscription": "gold"
+    },
+    {
+      "id": 25641655,
+      "name": "Steven",
+      "firstname": "Chouk",
+      "email": "mon@email.com",
+      "subscription": "silver"
+    },
+    {
+      "id": 15848885,
+      "name": "Martin",
+      "firstname": "Matin",
+      "email": "martin@matin.com",
+      "subscription": "silver"
+    },
+    {
+      "id": 17445623,
+      "name": "Bob",
+      "firstname": "L'éponge",
+      "email": "ananas@marin.com",
+      "subscription": "bronze"
+    }
+  ]
+}
