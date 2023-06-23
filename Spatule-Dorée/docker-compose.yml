@@ -1,16 +1,19 @@
 version: '3'
 services:
-    laravel.test:
+    laravel.prod:
+        container_name: 'laravel'
         build: .
-        image: sail-8.2/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
             - '8000:8000'
         environment:
+            WWWUSER: '${WWWUSER:-1000}'
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+            DB_HOST: 'mysql'
         volumes:
             - '.:/var/www/html'
         networks:
@@ -18,9 +21,8 @@ services:
         depends_on:
             - mysql
     mysql:
-        image: '8000:8000'
-        ports:
-            - '3306:3306'
+        image: 'mysql/mysql-server:8.0'
+        container_name: 'mysql'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: '%'
@@ -28,18 +30,14 @@ services:
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
-            DB_HOST: 'mysql'
         volumes:
             - 'sail-mysql:/var/lib/mysql'
         networks:
             - sail
-
 networks:
     sail:
 volumes:
     sail-mysql:
         driver: local
-    sail-redis:
-        driver: local
-    sail-meilisearch:
+    sail-minio:
         driver: local
