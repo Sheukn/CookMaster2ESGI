@@ -3,18 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use App\Models\Role;
+use Laravel\Cashier\Billable;
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'country',
         'phone',
+        'is_admin', // Utilisez le nom de colonne 'is_admin' au lieu de 'admin'
     ];
 
     /**
@@ -50,31 +50,20 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'is_admin' => 'boolean',
-        'is_ban' => 'boolean'
     ];
 
-    public static function create(array $data)
+    public function roles()
     {
-        $user = new static;
-        $user->firstname = $data['firstname'];
-        $user->name = $data['name'];
-        //$user->date_of_birth = $data['date_of_birth'];
-        //$user->age = $data['age'];
-        $user->email = $data['email'];
-        $user->address = $data['address'];
-        $user->postal_code = $data['postal_code'];
-        $user->city = $data['city'];
-        $user->country = $data['country'];
-        $user->phone = $data['phone'];
-        $user->password = $data['password'];
-        $user->is_admin = $data['is_admin'];
+        return $this->belongsToMany(Role::class);
+    }
 
+    public function isAdmin()
+    {
+        return $this->roles()->where('name', 'admin')->exists();
+    }
 
-
-
-        $user->save();
-
-        return $user;
+    public function hasAnyRole($roles)
+    {
+        return $this->roles()->whereIn('name', $roles)->exists();
     }
 }

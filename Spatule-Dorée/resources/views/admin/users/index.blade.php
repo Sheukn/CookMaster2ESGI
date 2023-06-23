@@ -1,54 +1,52 @@
-<!-- resources/views/admin/users/index.blade.php -->
-
-@extends('auth.layouts')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4">Utilisateurs</h1>
-
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Liste des utilisateurs') }}</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Prénom</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Rôles</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <th scope="row">{{ $user->id }}</th>
+                                        <td>{{ $user->firstname }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</td>
+                                        <td>
+                                            @can('edit-users')
+                                                <a href="{{ route('admin.users.edit', $user->id) }}"
+                                                    class="btn btn-primary">Editer</a>
+                                            @endcan
+                                            @can('delete-users')
+                                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-warning" type="submit">Supprimer</button>
+                                                </form>
+                                            @endcan
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        @endif
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-
-                    <th>id</th>
-                    <th>firstname</th>
-                    <th>name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->firstname }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary">View</a>
-                            <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-secondary">Edit</a>
-                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="3">No users found.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+        </div>
     </div>
 @endsection

@@ -1,5 +1,5 @@
-@extends('auth.layouts')
-@section('title', 'Inscription')
+@extends('layouts.app')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register.store') }}">
+                        <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="row mb-3">
@@ -17,7 +17,7 @@
 
                                 <div class="col-md-6">
                                     <input id="firstname" type="text"
-                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
+                                        class="form-control @error('firdtname') is-invalid @enderror" name="firstname"
                                         value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
 
                                     @error('firstname')
@@ -27,8 +27,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
 
                             <div class="row mb-3">
                                 <label for="name"
@@ -66,7 +64,7 @@
 
                             <div class="row mb-3">
                                 <label for="postal_code"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Code Postale') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Code postale') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="postal_code" type="text"
@@ -97,13 +95,14 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="country"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Pays') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="country" type="text"
-                                        class="form-control @error('city') is-invalid @enderror" name="country"
+                                        class="form-control @error('country') is-invalid @enderror" name="country"
                                         value="{{ old('country') }}" required autocomplete="country" autofocus>
 
                                     @error('country')
@@ -113,13 +112,14 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="phone"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Téléphone') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Mobile') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="phone" type="text"
-                                        class="form-control @error('city') is-invalid @enderror" name="phone"
+                                        class="form-control @error('phone') is-invalid @enderror" name="phone"
                                         value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                     @error('phone')
@@ -130,9 +130,10 @@
                                 </div>
                             </div>
 
+
                             <div class="row mb-3">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -149,7 +150,7 @@
 
                             <div class="row mb-3">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Mot de passe') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -166,7 +167,7 @@
 
                             <div class="row mb-3">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirmation du mot de passe') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
