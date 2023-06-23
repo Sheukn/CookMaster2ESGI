@@ -9,19 +9,40 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item pe-4">
-                    <a class="nav-link" aria-current="page" href="#">Accueil</a>
+                    <a class="nav-link" aria-current="page" href="/">Accueil</a>
+                </li>
+
+                <li class="nav-item pe-4">
+                    <a class="nav-link" href="/subscribe">Nos abonnements</a>
                 </li>
 
                 <li class="nav-item pe-4">
                     <a class="nav-link" href="#">Nos matériels de cuisines</a>
                 </li>
 
-                <li class="nav-item pe-4">
-                    <a class="nav-link" href="register">Inscription</a>
-                </li>
-                <li class="nav-item pe-4">
-                    <a class="nav-link" href="login">Se connecter</a>
-                </li>
+
+                @auth
+                    <li class="nav-item pe-4">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                    <li class="nav-item pe-4">
+                        <a class="nav-link" href="{{ route('users.profile.show') }}">Mon profil</a>
+                    </li>
+                    @csrf
+                    </form>
+                    </li>
+                @endauth
+                @guest
+                    <li class="nav-item pe-4">
+                        <a class="nav-link" href="register">Inscription</a>
+                    </li>
+                    <li class="nav-item pe-4">
+                        <a class="nav-link" href="login">Se connecter</a>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>
