@@ -2,11 +2,10 @@ package com.cookmasterapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class SubscriptionSelect extends AppCompatActivity {
+public class SubscriptionSelectActivity extends AppCompatActivity {
 
     private Button submit;
 

@@ -33,7 +33,7 @@ public class ClientView {
     // For the sake of simplicity, the data is generated randomly
     // In a real application, the data would be retrieved from a database
 
-    String filepath = "./testData/data.json";
+    String filepath = "/testData/data.json";
 
 
     @FXML
@@ -43,7 +43,6 @@ public class ClientView {
         revenueChart.getData().clear();
         subChart.getData().clear();
         userChart.getData().clear();
-        filepath = (new File(filepath).getAbsolutePath()).toString();
         // Read the data from the json file
         try(FileReader fileReader = new FileReader(filepath)){
 

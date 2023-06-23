@@ -1,70 +1,44 @@
 package com.cookmasterapplication;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
-    private Button connexion;
-    private Button inscription;
-    private Button quitter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    BottomNavigationView bottomNavigationView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.connexion = findViewById(R.id.connexion);
-        this.inscription = findViewById(R.id.inscription);
-        this.quitter = findViewById(R.id.quitter);
-
-        this.connexion.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                // Opens Login Layout
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                startActivity(intent);
-            }
-        });
-
-        this.inscription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Opens subscription layout
-                Intent intent = new Intent(MainActivity.this, SubscriptionSelect.class);
-                startActivity(intent);
-            }
-        });
-
-        this.quitter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle(getResources().getString(R.string.leavePopupTitle))
-                        .setMessage(getResources().getString(R.string.leavePopupMessage))
-                        .setPositiveButton(getResources().getString(R.string.leavePopupYes), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                            }
-                        })
-                        .setNegativeButton(getResources().getString(R.string.leavePopupNo), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        })
-                        .setCancelable(false)
-                        .show();
-            }
-        });
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setSelectedItemId(R.id.profile);
     }
 
+    CoursesActivity coursesActivity = new CoursesActivity();
+    RecipesActivity recipesActivity = new RecipesActivity();
+    ProfileActivity profileActivity = new ProfileActivity();
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.courses) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, coursesActivity).commit();
+            return true;
+        }else if (item.getItemId() == R.id.recipes) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, recipesActivity).commit();
+            return true;
+        }else if (item.getItemId() == R.id.profile) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, profileActivity).commit();
+            return true;
+        }
+        return false;
+    }
 }
