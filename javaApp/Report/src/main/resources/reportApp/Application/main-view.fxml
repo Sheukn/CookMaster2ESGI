@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane cache="true" layoutX="14.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" scaleShape="false" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Clients Stats">
+               <content>
+                  <fx:include source="client-view.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Users Stats">
+               <content>
+                  <fx:include source="userList-view.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Prestation Stats" />
+         </tabs>
+      </TabPane>
+   </children>
+   <opaqueInsets>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </opaqueInsets>
+</Pane>
