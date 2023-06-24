@@ -74,8 +74,6 @@ services:
                 - 'http://localhost:7700/health'
             retries: 3
             timeout: 5s
-        networks:
-            - sail
 networks:
     sail:
 volumes:
