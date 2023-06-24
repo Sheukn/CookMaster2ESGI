@@ -397,15 +397,6 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-        'laravel/sail' => array(
-            'pretty_version' => 'v1.23.0',
-            'version' => '1.23.0.0',
-            'reference' => 'a2e046f748e87d3ef8b2b381e0e5c5a11f34e46b',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../laravel/sail',
-            'aliases' => array(),
-            'dev_requirement' => true,
-        ),
         'laravel/sanctum' => array(
             'pretty_version' => 'v3.2.5',
             'version' => '3.2.5.0',
@@ -1264,15 +1255,6 @@
             'install_path' => __DIR__ . '/../symfony/var-dumper',
             'aliases' => array(),
             'dev_requirement' => false,
-        ),
-        'symfony/yaml' => array(
-            'pretty_version' => 'v6.3.0',
-            'version' => '6.3.0.0',
-            'reference' => 'a9a8337aa641ef2aa39c3e028f9107ec391e5927',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/yaml',
-            'aliases' => array(),
-            'dev_requirement' => true,
         ),
         'theseer/tokenizer' => array(
             'pretty_version' => '1.2.1',
