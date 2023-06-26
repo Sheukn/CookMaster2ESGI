@@ -72,7 +72,6 @@ class LoginController extends Controller
     public function __construct()
 
     {
-
         $this->middleware('guest')->except('logout');
     }
 
@@ -84,7 +83,7 @@ class LoginController extends Controller
         } elseif (Auth::user()->roles->pluck('name')->contains('user')) {
             return 'profil/profile';
         } else {
-            return '/';
+            return '/home';
         }
     }
 }

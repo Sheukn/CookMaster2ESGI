@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StripePaymentController;
-use App\Http\Controllers;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\API\UsersController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\StripePaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('can:manage-users')->prefix('admin')->name('admin.')->group(function () {
     // Routes pour la gestion des utilisateurs
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -45,15 +46,17 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
-    Route::put('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile/{user}', [ProfileController::class, 'updateProfile'])->name('profile.update');
 });
 
 
-Route::middleware("auth")->group(function () {
-    Route::get('plans', [PlanController::class, 'index']);
-    Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
-    Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
-});
+
+// Route::middleware("auth")->group(function () {
+//     Route::get('plans', [PlanController::class, 'index']);
+//     Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
+//     Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
+// });
 
 
 

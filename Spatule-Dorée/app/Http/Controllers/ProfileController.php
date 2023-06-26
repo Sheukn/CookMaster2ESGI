@@ -15,7 +15,13 @@ class ProfileController extends Controller
         return view('profile.profile')->with('user', $user);
     }
 
-    public function update(Request $request, User $user)
+    public function edit()
+    {
+        $user = Auth::user();
+        return view('profile.profileSettings')->with('user', $user);
+    }
+
+    public function updateProfile(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -23,12 +29,13 @@ class ProfileController extends Controller
             // Ajoutez d'autres règles de validation selon vos besoins
         ]);
 
+        $user->firstname = $request->firstname;
         $user->name = $request->name;
         $user->email = $request->email;
         // Mettez à jour d'autres champs selon vos besoins
 
         $user->save();
 
-        return redirect()->route('profil.show')->with('success', 'Profil mis à jour avec succès.');
+        return redirect()->route('profile.show')->with('success', 'Profil mis à jour avec succès.');
     }
 }
