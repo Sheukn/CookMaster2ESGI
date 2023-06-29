@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '7a1a56a8de6538d1dd7846fec0ba7b4bc32170c7',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -361,6 +361,15 @@
                 0 => '*',
             ),
         ),
+        'laravel/cashier' => array(
+            'pretty_version' => 'v14.12.3',
+            'version' => '14.12.3.0',
+            'reference' => '072e14c3a0248ff080f6c8f15322d6d6906ed8a1',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/cashier',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'laravel/framework' => array(
             'pretty_version' => 'v10.13.5',
             'version' => '10.13.5.0',
@@ -371,9 +380,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '7a1a56a8de6538d1dd7846fec0ba7b4bc32170c7',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -486,6 +495,15 @@
             'install_path' => __DIR__ . '/../mockery/mockery',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'moneyphp/money' => array(
+            'pretty_version' => 'v4.1.1',
+            'version' => '4.1.1.0',
+            'reference' => '9682220995ffd396843be5b4ee1e5f2c2d6ecee2',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../moneyphp/money',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'monolog/monolog' => array(
             'pretty_version' => '3.4.0',
@@ -733,8 +751,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '3.0.0',
-                1 => '1.0|2.0|3.0',
+                0 => '1.0|2.0|3.0',
+                1 => '3.0.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -965,6 +983,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'stripe/stripe-php' => array(
+            'pretty_version' => 'v10.15.0',
+            'version' => '10.15.0.0',
+            'reference' => 'd0e48cc85e1aa54cbff3644d1979a4a4c3fdd7bf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../stripe/stripe-php',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'symfony/console' => array(
             'pretty_version' => 'v6.3.0',
             'version' => '6.3.0.0',
@@ -1085,6 +1112,15 @@
             'reference' => '511a08c03c1960e08a883f4cffcacd219b758354',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-intl-grapheme',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/polyfill-intl-icu' => array(
+            'pretty_version' => 'v1.27.0',
+            'version' => '1.27.0.0',
+            'reference' => 'a3d9148e2c363588e05abbdd4ee4f971f0a5330c',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-intl-icu',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
