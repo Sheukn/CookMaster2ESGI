@@ -47,7 +47,7 @@ Route::middleware('can:manage-users')->prefix('admin')->name('admin.')->group(fu
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('profile/{user}', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::patch('profile/{user}', [ProfileController::class, 'updateProfile'])->name('profile.update');
 });
 
 
