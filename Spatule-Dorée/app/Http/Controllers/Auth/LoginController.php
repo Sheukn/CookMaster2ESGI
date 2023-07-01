@@ -81,7 +81,7 @@ class LoginController extends Controller
         if (Auth::user()->roles->pluck('name')->contains('admin')) {
             return '/admin/users';
         } elseif (Auth::user()->roles->pluck('name')->contains('user')) {
-            return 'profil/profile';
+            return 'profile/profile';
         } else {
             return '/home';
         }
