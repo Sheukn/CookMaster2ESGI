@@ -4,11 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
+use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class UserSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -27,27 +28,28 @@ class UserSeeder extends Seeder
             'city' => 'Paris',
             'country' => 'France',
             'phone' => '0613026330',
-            'password' => bcrypt('Azerty1234.'),
+            'password' => bcrypt('Azerty11'),
             'is_admin' => 1,
         ]);
 
         $User = User::create([
             'firstname' => 'User',
             'name' => 'User',
-            'email' => 'user@user@exemple.com',
+            'email' => 'user@exemple.com',
             'address' => '23 rue Balzac',
             'postal_code' => '75012',
             'city' => 'Paris',
             'country' => 'France',
             'phone' => '0613026330',
             'password' => bcrypt('Azerty11'),
+            'email_verified_at' => date('Y-m-d H:i:s')
 
         ]);
 
         $Teacher =  User::create([
             'firstname' => 'teacher',
             'name' => 'teacher',
-            'email' => 'teacher@teacher@exemple.com',
+            'email' => 'teacher@exemple.com',
             'address' => '23 rue Balzac',
             'postal_code' => '75012',
             'city' => 'Paris',
@@ -55,6 +57,8 @@ class UserSeeder extends Seeder
             'phone' => '0613026330',
             'password' => bcrypt('Azerty11'),
             'is_teacher' => 1,
+            'email_verified_at' => date('Y-m-d H:i:s')
+
 
         ]);
 

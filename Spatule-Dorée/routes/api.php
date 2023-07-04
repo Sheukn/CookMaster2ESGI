@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\UsersController; // Import correct de la classe UsersController
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['prefix' => 'users'], function () {
-    Route::get('/', [UsersController::class, 'index']); // Récupérer tous les utilisateurs
-    Route::post('/', [UsersController::class, 'store']); // Créer un nouvel utilisateur
-    Route::get('/{user}', [UsersController::class, 'show']); // Récupérer un utilisateur par son ID
-    Route::put('/{user}', [UsersController::class, 'update']); // Mettre à jour un utilisateur par son ID
-    Route::delete('/{user}', [UsersController::class, 'destroy']); // Supprimer un utilisateur par son ID
-});
+Route::post('/auth/register', [AuthController::class, 'createUser']);
+Route::post('/auth/login', [AuthController::class, 'loginUser']);
+Route::post('/auth/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
