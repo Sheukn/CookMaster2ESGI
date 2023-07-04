@@ -33,7 +33,7 @@ public class ClientView {
     // For the sake of simplicity, the data is generated randomly
     // In a real application, the data would be retrieved from a database
 
-    String filepath = "/testData/data.json";
+    String filepath = "./testData/data.json";
 
 
     @FXML
