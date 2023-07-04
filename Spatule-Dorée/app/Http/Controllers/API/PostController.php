@@ -6,14 +6,15 @@ namespace App\Http\Controllers\Api;
 
 
 
-use App\Http\Controllers\Controller;
-
 use App\Models\Post;
+
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -173,6 +174,31 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * Get all users.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsers()
+    {
+        //Get id , firstname, name, email, address
+        $users = User::all()->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'firstname' => $user->firstname,
+                'name' => $user->name,
+                'email' => $user->email,
+                'address' => $user->address,
+
+
+            ];
+        });
+
+        return response()->json([
+            'status' => true,
+            'data' => $users
+        ]);
+    }
 
 
     /**
