@@ -22,4 +22,4 @@ Spatule-Dorée/.env
 *.env
 Spatule-Dorée/vendor
 Spatule-Dorée/package-lock.json
-Spatule-Dorée/composer-lock.json
+Spatule-Dorée/composer.lock
