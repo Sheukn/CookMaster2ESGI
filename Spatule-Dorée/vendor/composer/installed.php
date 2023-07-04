@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '7a1a56a8de6538d1dd7846fec0ba7b4bc32170c7',
+        'reference' => '4cebcd6dbd15b2e38ddda409c48c0d972fb63298',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -382,7 +382,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '7a1a56a8de6538d1dd7846fec0ba7b4bc32170c7',
+            'reference' => '4cebcd6dbd15b2e38ddda409c48c0d972fb63298',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -751,8 +751,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -984,9 +984,9 @@
             'dev_requirement' => true,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v10.15.0',
-            'version' => '10.15.0.0',
-            'reference' => 'd0e48cc85e1aa54cbff3644d1979a4a4c3fdd7bf',
+            'pretty_version' => 'v10.16.0',
+            'version' => '10.16.0.0',
+            'reference' => 'ea863a92102a8e8dbdeddf79b4535c355ec62d91',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),

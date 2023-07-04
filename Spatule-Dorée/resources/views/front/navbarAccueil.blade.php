@@ -13,7 +13,7 @@
                 </li>
 
                 <li class="nav-item pe-4">
-                    <a class="nav-link" href="/subscribe">Nos abonnements</a>
+                    <a class="nav-link" href="plans">Nos abonnements</a>
                 </li>
 
                 <li class="nav-item pe-4">

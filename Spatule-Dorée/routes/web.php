@@ -23,9 +23,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/subscribe', function () {
-    return view('front.subscribe');
-});
 
 Auth::routes(['verify' => true]);
 
@@ -51,12 +48,11 @@ Route::prefix('users')->name('users.')->group(function () {
 });
 
 
-
-// Route::middleware("auth")->group(function () {
-//     Route::get('plans', [PlanController::class, 'index']);
-//     Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
-//     Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
-// });
+Route::middleware("auth")->group(function () {
+    Route::get('plans', [PlanController::class, 'index']);
+    Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
+    Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
+});
 
 
 
