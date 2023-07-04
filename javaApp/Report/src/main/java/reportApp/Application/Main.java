@@ -13,6 +13,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Report Application" + " - " + "CookMaster" + " - " + "ESGI");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
