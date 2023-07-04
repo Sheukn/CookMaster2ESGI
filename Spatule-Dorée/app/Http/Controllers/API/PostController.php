@@ -181,7 +181,18 @@ class PostController extends Controller
      */
     public function getUsers()
     {
-        $users = User::all();
+        //Get id , firstname, name, email, address
+        $users = User::all()->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'firstname' => $user->firstname,
+                'name' => $user->name,
+                'email' => $user->email,
+                'address' => $user->address,
+
+
+            ];
+        });
 
         return response()->json([
             'status' => true,
