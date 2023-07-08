@@ -7,19 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.Reader;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpClient;
 import java.io.IOException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.net.http.HttpTimeoutException;
 import java.util.ArrayList;
 
-public class userListController {
+public class UserListController {
 
 
     @FXML
@@ -33,25 +29,16 @@ public class userListController {
     @FXML
     private TableColumn<?, ?> subCol;
     @FXML
-    private TableView<Pokemon> userList;
+    private TableView<Users> userList;
 
     // Generate random user with random subscription type (Gold, Silver, Bronze) and random id (1-100) and random name and surname and random mail
 
-    private ObservableList<User> userData;
-    private ArrayList<User> userListArray = new ArrayList<>();
+    private ObservableList<Users> userData;
+    private ArrayList<Users> userListArray = new ArrayList<>();
 
-    private ArrayList<Pokemon> PokemonList = new ArrayList<>();
-    private ArrayList<String> pokemonType = new ArrayList<>();
-    private  ObservableList<Pokemon> pokemonData;
-
-    //Add data to data
-
-
-    // Add the data to the different columns
     @FXML
     void generate() {
-        for(int i = 1; i <= 200; i++){
-            String url = "https://pokeapi.co/api/v2/pokemon/" + i;
+            String url = "https://spatuledoree.fr/api/users";
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
@@ -66,33 +53,26 @@ public class userListController {
                     // Get the response body as a string
                     String responseBody = response.body();
 
-                    // Use Gson to parse the response body to a JsonElement
+                    //        try(FileReader file = new FileReader(filepath)){
                     JsonElement jsonElement = JsonParser.parseString(responseBody);
-
-                    // Now you can work with the JsonElement
-                    // For example, you can access its properties using jsonElement.get("propertyName")
                     JsonObject jsonObject = jsonElement.getAsJsonObject();
-                    JsonElement responseId = jsonObject.get("id");
-                    JsonElement responseName = jsonObject.get("name");
+                    JsonElement propertyValue = jsonObject.get("data");
 
-                    JsonArray typeArray = JsonParser.parseString(String.valueOf(jsonObject.get("types"))).getAsJsonArray();
-
-                    for(JsonElement element : typeArray){
-                        JsonObject typesList = element.getAsJsonObject();
-                        JsonObject types = typesList.get("type").getAsJsonObject();
-                        JsonElement typeName = types.get("name");
-                        pokemonType.add(typeName.getAsString());
+                    for(JsonElement element : propertyValue.getAsJsonArray()){
+                        JsonObject user = element.getAsJsonObject();
+                        String name = user.get("name").getAsString();
+                        String email = user.get("email").getAsString();
+//                        Users newUser = new Users(id, email, firstname, name, subscription);
+//                        userListArray.add(newUser);
                     }
+//                    userData = FXCollections.observableArrayList(userListArray);
+//                    idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+//                    mailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+//                    nomCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+//                    prenomCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+//                    subCol.setCellValueFactory(new PropertyValueFactory<>("sub"));
+//                    userList.setItems(userData);
 
-                    if (pokemonType.size() == 1){
-                        Pokemon pokemon = new Pokemon(responseId.getAsInt(), responseName.getAsString(), pokemonType.get(0));
-                        PokemonList.add(pokemon);
-                    }else{
-                        Pokemon pokemon = new Pokemon(responseId.getAsInt(), responseName.getAsString(), pokemonType.get(0), pokemonType.get(1));
-                        PokemonList.add(pokemon);
-                    }
-
-                    pokemonType.clear();
                 } else {
                     // Handle the error response
                     System.out.println("Error: " + response.statusCode() + " " + response.body());
@@ -105,42 +85,6 @@ public class userListController {
                 e.printStackTrace();
             }
         }
-        pokemonData = FXCollections.observableArrayList(PokemonList);
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        prenomCol.setCellValueFactory(new PropertyValueFactory<>("first_type"));
-        mailCol.setCellValueFactory(new PropertyValueFactory<>("second_type"));
-
-
-        userList.setItems(pokemonData);
-
-//        try(FileReader file = new FileReader(filepath)){
-//            JsonElement jsonElement = JsonParser.parseReader(file);
-//            JsonObject jsonObject = jsonElement.getAsJsonObject();
-//            JsonElement propertyValue = jsonObject.get("User");
-//
-//            for(JsonElement element : propertyValue.getAsJsonArray()){
-//                JsonObject user = element.getAsJsonObject();
-//                int id = user.get("id").getAsInt();
-//                String name = user.get("name").getAsString();
-//                String firstname = user.get("firstname").getAsString();
-//                String email = user.get("email").getAsString();
-//                String subscription = user.get("subscription").getAsString();
-//
-//                User newUser = new User(id, email, firstname, name, subscription);
-//                userListArray.add(newUser);
-//            }
-//            userData = FXCollections.observableArrayList(userListArray);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        mailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-//        nomCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-//        prenomCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-//        subCol.setCellValueFactory(new PropertyValueFactory<>("sub"));
-//        userList.setItems(userData);
-    }
-
-
 }
+
+

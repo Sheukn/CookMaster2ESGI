@@ -13,7 +13,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class ClientView {
+public class ClientController {
 
     @FXML
     private LineChart<?, ?> SellsChart;
@@ -38,6 +38,10 @@ public class ClientView {
 
     @FXML
     void generate(ActionEvent event) {
+
+        ApiKey apiKey = ApiKey.getInstance();
+
+        System.out.println(apiKey.getApiKey());
         // Clear the charts
         SellsChart.getData().clear();
         revenueChart.getData().clear();

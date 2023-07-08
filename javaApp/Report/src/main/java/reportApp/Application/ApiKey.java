@@ -3,29 +3,17 @@ package reportApp.Application;
 public class ApiKey {
 
     private static final ApiKey instance = new ApiKey();
-
-    private String id;
-    private String password;
+    private String apiKey;
     private ApiKey() {}
-
     public static ApiKey getInstance() {
         return instance;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getApiKey() {
+        return apiKey;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
 }
