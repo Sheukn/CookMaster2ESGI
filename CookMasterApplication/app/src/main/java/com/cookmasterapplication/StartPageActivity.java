@@ -51,11 +51,11 @@ public class StartPageActivity extends AppCompatActivity {
             try{
                 JSONObject jsonObject = new JSONObject(response);
                 boolean status = jsonObject.getBoolean("status");
-                if(status){
-                    Intent intent = new Intent(StartPageActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-
+//                if(status){
+//                    Intent intent = new Intent(StartPageActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                }
+                Toast.makeText(StartPageActivity.this, "status : " + status, Toast.LENGTH_SHORT).show();
             }catch (Exception e){
                 e.printStackTrace();
             }
