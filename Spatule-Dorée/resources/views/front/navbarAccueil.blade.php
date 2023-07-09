@@ -13,7 +13,7 @@
                 </li>
 
                 <li class="nav-item pe-4">
-                    <a class="nav-link" href="/subscribe">Nos abonnements</a>
+                    <a class="nav-link" href="plans">Nos abonnements</a>
                 </li>
 
                 <li class="nav-item pe-4">
@@ -25,14 +25,17 @@
                     <li class="nav-item pe-4">
                         <a class="nav-link" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
+                    </li>
                     <li class="nav-item pe-4">
                         <a class="nav-link" href="{{ route('users.profile.show') }}">Mon profil</a>
                     </li>
-                    @csrf
-                    </form>
+                    <li class="nav-item">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 @endauth
                 @guest

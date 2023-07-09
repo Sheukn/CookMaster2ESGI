@@ -70,35 +70,12 @@
                                         required autocomplete="email" autofocus disabled>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <h2>Subscription</h2>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Plan</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option value="basic">Basic</option>
-                                        <option value="premium">Premium</option>
-                                        <option value="enterprise">Enterprise</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Methode de paiment</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option value="credit_card">Credit Card</option>
-                                        <option value="paypal">PayPal</option>
-                                    </select>
-                                </td>
-                            </tr>
                         </table>
 
                     </div>
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Modifier mon
-                            profil</button></div>
+                    <div class="mt-5 text-center"><a href="{{ route('users.profile.edit') }}"
+                            class="btn btn-primary profile-button" type="button">Modifier mon
+                            profil</a></div>
                 </div>
             </div>
 

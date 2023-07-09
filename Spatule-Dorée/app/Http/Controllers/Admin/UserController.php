@@ -42,7 +42,7 @@ class UserController extends Controller
 
         $user = User::create($data); // Créer un nouvel utilisateur dans la base de données
 
-        return redirect()->route('users.show', $user->id)
+        return redirect()->route('admin.users.show', $user->id)
             ->with('success', 'User created successfully.'); // Rediriger vers la page de détails de l'utilisateur avec un message de succès
     }
 
@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($user); // Trouver l'utilisateur correspondant à l'ID fourni
 
-        return view('users.show', compact('user')); // Afficher une vue avec les détails de l'utilisateur
+        return view('admin.users.show', compact('user')); // Afficher une vue avec les détails de l'utilisateur
     }
 
     public function edit(User $user)
