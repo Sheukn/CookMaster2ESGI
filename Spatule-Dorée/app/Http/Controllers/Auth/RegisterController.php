@@ -51,13 +51,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'firstname' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'postal_code' => ['required', 'int', 'min:5'],
-            'city' => ['required', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric', 'min:10'],
+            //'address' => ['required', 'string', 'max:255'],
+            //'postal_code' => ['required', 'int', 'min:5'],
+            //'city' => ['required', 'string', 'max:255'],
+            //'country' => ['required', 'string', 'max:255'],
+            //'phone' => ['required', 'numeric', 'min:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -74,13 +73,11 @@ class RegisterController extends Controller
         //var_dump($data);
         //var_dump($data['is_teacher']);
         $user = User::create([
-            'firstname' => $data['firstname'],
             'name' => $data['name'],
-            'address' => $data['address'],
-            'postal_code' => $data['postal_code'],
-            'city' => $data['city'],
-            'country' => $data['country'],
-            'phone' => $data['phone'],
+            //'address' => $data['address'],
+            //'city' => $data['city'],
+            //'country' => $data['country'],
+            //'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'is_teacher' => array_key_exists('is_teacher', $data) && $data['is_teacher'] == 'on' ? 1 : 0,
