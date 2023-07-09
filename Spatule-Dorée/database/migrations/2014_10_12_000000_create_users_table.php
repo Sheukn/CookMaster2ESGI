@@ -28,6 +28,7 @@ return new class extends Migration
             $table->boolean('is_teacher')->default(false);
             $table->boolean('is_ban')->default(false);
             $table->rememberToken();
+            $table->string('api_token')->unique()->nullable()->default(null);
             $table->timestamps();
         });
     }

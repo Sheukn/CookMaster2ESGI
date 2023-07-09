@@ -182,9 +182,9 @@ class AuthController extends Controller
 
 
             $token = Str::random(32);
-            $insertToken = User::where('email', $request->email)->update(['remember_token' => $token]);
+            $insertToken = User::where('email', $request->email)->update(['api_token' => $token]);
             $user = User::where('email', $request->email)->first();
-            $fetchToken = $user->remember_token;
+            $fetchToken = $user->api_token;
 
 
 

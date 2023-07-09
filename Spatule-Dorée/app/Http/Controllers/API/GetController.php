@@ -24,7 +24,7 @@ class GetController extends Controller{
     public function getUserData(Request $request){
         $token = $request->token;
 
-        $user = User::where('remember_token', $token)->first();
+        $user = User::where('api_token', $token)->first();
 
         if($user){
             return response()->json([
@@ -48,7 +48,7 @@ class GetController extends Controller{
 
             $token = $request->token;
 
-            $user = User::where('remember_token', $token)->first();
+            $user = User::where('api_token', $token)->first();
 
             if ($user) {
 
