@@ -6,6 +6,8 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\GetController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,8 @@ Route::get('/users', function () {
     return UserResource::collection(User::all());
 });
 
-Route::get('/auth/checkToken', [AuthController::class, 'checkToken']);
+Route::get('/auth/checkToken', [GetController::class, 'checkToken']);
+Route::get('/auth/getUserData', [GetController::class, 'getUserData']);
 
 //Route::get('/users', [PostController::class, 'getUsers']);
 

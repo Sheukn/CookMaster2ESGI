@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                        String url = "https://spatuledoree.fr/api/users";
+                        String url = "https://spatuledoree.fr/api/auth/login";
                     // Create body request
                     JSONObject jsonBody = new JSONObject();
                     String requestBody;
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             try {
@@ -76,11 +76,11 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(LoginActivity.this, "Identifiant ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
                                 } else {
                                     JSONObject jsonObject = new JSONObject(response);
-//                                    edit.putString("token", jsonObject.getString("token"));
-//                                    edit.apply();
-//                                    startActivity(intent);
-//                                    finish();
-                                    Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                                    edit.putString("token", jsonObject.getString("token"));
+                                    edit.apply();
+                                    // Toast.makeText(LoginActivity.this, jsonObject.getString("token"), Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
+                                    finish();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -99,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
                             return requestBody.getBytes();
                         }
                     };
-//                    queue.add(stringRequest);
-                    startActivity(intent);
+                    queue.add(stringRequest);
+
 
                 }
             }
