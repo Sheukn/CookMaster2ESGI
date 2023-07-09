@@ -27,7 +27,7 @@ Route::get('/users', function () {
     return UserResource::collection(User::all());
 });
 
-
+Route::get('/auth/checkToken', [AuthController::class, 'checkToken']);
 
 //Route::get('/users', [PostController::class, 'getUsers']);
 
