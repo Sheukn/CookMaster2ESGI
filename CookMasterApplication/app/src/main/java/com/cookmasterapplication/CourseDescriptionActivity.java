@@ -56,7 +56,6 @@ public class CourseDescriptionActivity extends AppCompatActivity implements OnMa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
     }
 
     // Get a handle to the GoogleMap object and display marker.

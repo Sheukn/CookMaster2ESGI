@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         this.identifiant = findViewById(R.id.identifiant);
         this.forgot_password = findViewById(R.id.forgot_password);
 
-        SharedPreferences settings = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences("users", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = settings.edit();
 
         this.submit.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +105,5 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

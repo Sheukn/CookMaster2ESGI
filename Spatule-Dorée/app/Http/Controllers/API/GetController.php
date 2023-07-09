@@ -31,7 +31,17 @@ class GetController extends Controller{
                 'status' => true,
                 'data' => $user
             ]);
+        }else {
+
+            return response()->json([
+
+                'status' => false,
+
+                'message' => 'Token is invalid',
+
+            ], 401);
         }
+
     }
 
 
