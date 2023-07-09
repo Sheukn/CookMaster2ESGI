@@ -19,9 +19,9 @@ public class CoursesActivity extends Fragment {
 
     private List<Courses> getCourses(){
         List<Courses> courses = new ArrayList<>();
-        courses.add(new Courses(10, "Dessers avec Mr.Jean", "Création de dessert", "01/01/2020", 3, "Paris", "Jean", 1));
-        courses.add(new Courses(11, "Pates avec Mr.Jean", "Création de pates", "02/01/2020", 3, "Paris", "Jean", 1));
-        courses.add(new Courses(12, "Poulet avec Mr.Jean", "Création de poulet", "03/01/2020", 3, "Paris", "Jean", 1));
+        courses.add(new Courses(10, "Dessers avec Mr.Jean", "Création de dessert", "01/01/2020", 3, "Paris 14", "Jean", 1));
+        courses.add(new Courses(11, "Pates avec Mr.Jean", "Création de pates", "02/01/2020", 3, "Paris 12", "Jean", 1));
+        courses.add(new Courses(12, "Poulet avec Mr.Jean", "Création de poulet", "03/01/2020", 3, "Paris 2", "Jean", 1));
         return courses;
     }
 
@@ -39,6 +39,12 @@ public class CoursesActivity extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Courses course = (Courses) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getContext(), CourseDescriptionActivity.class);
+                intent.putExtra("name", course.getName());
+                intent.putExtra("instructor", course.getInstructor());
+                intent.putExtra("date", course.getDate());
+                intent.putExtra("description", course.getDescription());
+                intent.putExtra("location", course.getLocation());
+                intent.putExtra("maxCapacity", course.getMaxCapacity());
                 startActivity(intent);
             }
         });
