@@ -127,71 +127,7 @@
     </section>
 
 
-    <section class="order-form py-5">
-        <div class="container">
-            <h2 class="merriweather text-center text-light mb-4">Passer une commande</h2>
-            <form action="" method="">
-                <div class="row">
-                    <div class="col-md-6 col-sm">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            <input type="text" class="form-control" placeholder="Votre nom complet" />
-                        </div>
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01"><i
-                                    class="fas fa-utensils"></i></label>
-                            <select class="form-select" id="inputGroupSelect01">
-                                <option class="text-muted">Choisir un menu</option>
-                                <option value="1">Choix 1</option>
-                                <option value="2">Choix 2</option>
-                                <option value="3">Choix 3</option>
-                            </select>
-                        </div>
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01"><i
-                                    class="fas fa-sort-numeric-up-alt"></i></label>
-                            <select class="form-select" id="inputGroupSelect01">
-                                <option class="text-muted">Nombre de personnes</option>
-                                <option value="1">Moins de 4</option>
-                                <option value="2">Entre 4 et 8</option>
-                                <option value="3">Entre 8 et 12</option>
-                                <option value="3">Plus de 12</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm">
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Votre adresse email" />
-                            <span class="input-group-text"><i class="fas fa-at"></i></span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Numéro de téléphone" />
-                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control"
-                                placeholder="Adresse zone Ex:. Paris, 12 Rue" />
-                            <span class="input-group-text"><i class="fas fa-home"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Précisez le nombre</span>
-                        <input type="text" class="form-control" placeholder="Ex:. 15" />
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Autres informations</span>
-                        <textarea class="form-control" aria-label="With textarea"></textarea>
 
-                    </div>
-                </div>
-                <div class="d-grid gap-2 d-md-block text-center">
-                    <button id="mon-bouton" class="btn btn-outline-warning" type="submit">Commandez</button>
-                </div>
-            </form>
-        </div>
-    </section>
     @include('front.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">

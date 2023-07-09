@@ -190,7 +190,6 @@ class PostController extends Controller
                 'email' => $user->email,
                 'address' => $user->address,
 
-
             ];
         });
 

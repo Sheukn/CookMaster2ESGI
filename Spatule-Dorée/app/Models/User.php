@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
 use Laravel\Cashier\Billable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -30,7 +32,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'country',
         'phone',
-        'is_admin', // Utilisez le nom de colonne 'is_admin' au lieu de 'admin'
+        'is_admin',
+        'is_teacher',
+        'events_id',
     ];
 
     /**
@@ -65,5 +69,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasAnyRole($roles)
     {
         return $this->roles()->whereIn('name', $roles)->exists();
+    }
+
+    public function events(): BelongsToMany
+    {
+        return $this->belongsToMany(Events::class, 'event_has_user', 'user_id', 'event_id');
     }
 }

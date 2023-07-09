@@ -12,18 +12,18 @@ class PlanSeeder extends Seeder
     {
         $plans = [
             [
-                'name' => 'Business Plan',
-                'slug' => 'business-plan',
-                'stripe_plan' => 'price_1LmB1SCXbPPKAWayGsb1DAkq',
-                'price' => 10,
-                'description' => 'Business Plan'
+                'name' => 'Formule starter',
+                'slug' => 'Formule starter',
+                'stripe_plan' => 'price_1NQW3XAnQHoTINbS1Z5bQTjL',
+                'price' => 9.90,
+                'description' => 'Formule starter'
             ],
             [
-                'name' => 'Premium',
-                'slug' => 'premium',
-                'stripe_plan' => 'price_1LnwbTCXbPPKAWay3ByKpcfq',
-                'price' => 20,
-                'description' => 'Premium'
+                'name' => 'Formule master',
+                'slug' => 'Formule master',
+                'stripe_plan' => 'price_1NQW7dAnQHoTINbS9BEXh92L',
+                'price' => 19,
+                'description' => 'Formule master'
             ]
         ];
 

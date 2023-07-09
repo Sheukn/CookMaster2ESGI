@@ -29,8 +29,8 @@ Route::get('/users', function () {
 
 
 
-//Route::get('/users', [PostController::class, 'getUsers']);
+// Route::get('/users', [PostController::class, 'getUsers']);
 
-Route::post('/auth/register', [AuthController::class, 'createUser']);
-Route::post('/auth/login', [AuthController::class, 'loginUser']);
-Route::post('/auth/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
+// Route::post('/auth/register', [AuthController::class, 'createUser']);
+// Route::post('/auth/login', [AuthController::class, 'loginUser']);
+// Route::post('/auth/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');

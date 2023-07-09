@@ -1,13 +1,11 @@
 <?php
 
-use App\Http\Controllers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\StripePaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +51,9 @@ Route::middleware("auth")->group(function () {
     Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
     Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
 });
+
+
+Route::get('/events', [EventsController::class, 'index'])->name('events.index');
 
 
 

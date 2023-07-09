@@ -71,6 +71,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //var_dump($data);
+        //var_dump($data['is_teacher']);
         $user = User::create([
             'firstname' => $data['firstname'],
             'name' => $data['name'],
@@ -81,7 +83,10 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'is_teacher' => array_key_exists('is_teacher', $data) && $data['is_teacher'] == 'on' ? 1 : 0,
         ]);
+        //dd($user);
+
 
         $role = Role::select('id')->where('name', 'User')->first();
         $user->roles()->attach($role);
