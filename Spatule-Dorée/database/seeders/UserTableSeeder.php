@@ -20,7 +20,6 @@ class UserTableSeeder extends Seeder
         DB::table('event_has_user')->truncate();
 
         $Admin = User::create([
-            'firstname' => 'Admin',
             'name' => 'Admin',
             'email' => 'cookmaster.projetct@outlook.com',
             'address' => '23 rue Balzac',
@@ -33,7 +32,6 @@ class UserTableSeeder extends Seeder
         ]);
 
         $User = User::create([
-            'firstname' => 'User',
             'name' => 'User',
             'email' => 'user@exemple.com',
             'address' => '23 rue Balzac',
@@ -47,7 +45,6 @@ class UserTableSeeder extends Seeder
         ]);
 
         $Teacher =  User::create([
-            'firstname' => 'teacher',
             'name' => 'teacher',
             'email' => 'teacher@exemple.com',
             'address' => '23 rue Balzac',

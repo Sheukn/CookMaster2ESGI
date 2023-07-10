@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Plan;
 use App\Models\Role;
 use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,7 +25,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'firstname',
         'name',
         'email',
         'password',
@@ -74,5 +75,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function events(): BelongsToMany
     {
         return $this->belongsToMany(Events::class, 'event_has_user', 'user_id', 'event_id');
+    }
+
+    public function plan(): HasOne
+    {
+        return $this->hasOne(Plan::class);
     }
 }

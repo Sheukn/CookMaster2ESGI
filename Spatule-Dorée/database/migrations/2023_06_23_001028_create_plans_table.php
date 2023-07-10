@@ -8,28 +8,42 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+
+    //Subscription = Abonnement
+
+    public function up(): void
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
-            $table->string('stripe_plan');
-            $table->integer('price');
-            $table->string('description');
+            $table->foreignId('user_id');
+            $table->string('subscription_type');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->float('price_per_month');
+            $table->integer('annual_price');
+            $table->boolean('advertising');
+            $table->boolean('commenting');
+            $table->integer('lessons');
+            $table->boolean('chat');
+            $table->boolean('discount');
+            $table->string('free_delivery');
+            $table->boolean('kitchen_space');
+            $table->boolean('exclusive_events');
+            $table->boolean('referral_reward');
+            $table->boolean('renewal_bonus');
             $table->timestamps();
+        });
+
+        Schema::table('plans', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('plans');
     }

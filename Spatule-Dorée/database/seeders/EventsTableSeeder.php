@@ -27,7 +27,9 @@ class EventsTableSeeder extends Seeder
 
             $teacher = User::where('is_teacher', 1)->first();
             //var_dump($teacher);
-            $event->users()->attach($teacher->id);
+            if ($teacher) {
+                $event->users()->attach($teacher->id);
+            }
         }
     }
 }

@@ -37,6 +37,15 @@ Route::middleware('can:manage-users')->prefix('admin')->name('admin.')->group(fu
     Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::put('/users/{user}/ban', [UserController::class, 'ban'])->name('users.ban');
+
+    // Routes pour la gestion des événements
+    Route::get('/events', [EventsController::class, 'index'])->name('events.index');
+    Route::get('/events/create', [EventsController::class, 'create'])->name('events.create');
+    Route::post('/events', [EventsController::class, 'store'])->name('events.store');
+    Route::get('/events/{event}', [EventsController::class, 'show'])->name('events.show');
+    Route::get('/events/{event}/edit', [EventsController::class, 'edit'])->name('events.edit');
+    Route::put('/events/{event}', [EventsController::class, 'update'])->name('events.update');
+    Route::delete('/events/{event}', [EventsController::class, 'destroy'])->name('events.destroy');
 });
 
 Route::prefix('users')->name('users.')->group(function () {
@@ -49,7 +58,9 @@ Route::prefix('users')->name('users.')->group(function () {
 Route::middleware("auth")->group(function () {
     Route::get('plans', [PlanController::class, 'index']);
     Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
-    Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
+    Route::get('/subscriptions', [PlanController::class, 'index'])->name('subscriptions.index');
+    Route::get('/subscription/checkout/{plan}', [PlanController::class, 'checkout'])->name('subscription');
+    Route::get('/subscription/success', [PlanController::class, 'success'])->name('subscription.success');
 });
 
 

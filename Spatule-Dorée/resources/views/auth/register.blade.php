@@ -12,25 +12,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="firstname"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Prénom') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="firstname" type="text"
-                                        class="form-control @error('firdtname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
-
-                                    @error('firstname')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Nom') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nom') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -133,7 +115,7 @@
 
                             <div class="row mb-3">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -150,7 +132,7 @@
 
                             <div class="row mb-3">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Mot de passe') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -167,7 +149,7 @@
 
                             <div class="row mb-3">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirmation du mot de passe') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -176,13 +158,13 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="is_teacher"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('is_teacher') }}</label>
+                                <label for="is_Teacher"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('is_Teacher') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="is_teacher" type="checkbox" name="is_teacher">
+                                    <input id="is_Teacher" type="checkbox" name="is_Teacher">
 
-                                    @error('is_teacher')
+                                    @error('is_Teacher')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

@@ -16,20 +16,32 @@ class Plan extends Model
 
      */
     protected $fillable = [
-        'name',
-        'slug',
-        'stripe_plan',
-        'price',
-        'description',
+        'user_id',
+        'subscription_type',
+        'start_date',
+        'end_date',
+        'subscription_price',
+        'price_per_month',
+        'annual_price',
+        'advertising',
+        'commenting',
+        'lessons',
+        'chat',
+        'discount',
+        'free_delivery',
+        'kitchen_space',
+        'exclusive_events',
+        'referral_reward',
+        'renewal_bonus',
     ];
 
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function getRouteKeyName()
+    public function user()
     {
-        return 'slug';
+        return $this->belongsTo(User::class);
+    }
+
+    public function isActive()
+    {
+        return $this->end_date >= now();
     }
 }
