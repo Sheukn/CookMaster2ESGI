@@ -33,6 +33,7 @@ Route::get('/auth/checkToken', [GetController::class, 'checkToken']);
 Route::get('/auth/getUserData', [GetController::class, 'getUserData']);
 Route::get('/users', [GetController::class, 'getAllUsers']);
 
+
 // Route::post('/auth/register', [AuthController::class, 'createUser']);
 // Route::post('/auth/login', [AuthController::class, 'loginUser']);
 // Route::post('/auth/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
