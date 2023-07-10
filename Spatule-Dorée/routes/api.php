@@ -31,12 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/auth/checkToken', [GetController::class, 'checkToken']);
 Route::get('/auth/getUserData', [GetController::class, 'getUserData']);
-<<<<<<< HEAD
 Route::get('/users', [GetController::class, 'getAllUsers']);
-=======
-
-// Route::get('/users', [PostController::class, 'getUsers']);
->>>>>>> cc4c096788c3c2879c45077ddb0f15cb78599428
 
 // Route::post('/auth/register', [AuthController::class, 'createUser']);
 // Route::post('/auth/login', [AuthController::class, 'loginUser']);
