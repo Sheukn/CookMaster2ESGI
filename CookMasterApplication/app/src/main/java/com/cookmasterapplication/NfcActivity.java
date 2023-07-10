@@ -15,18 +15,20 @@ import android.nfc.tech.Ndef;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
-public class NfcActivity extends Activity {
+public class NfcActivity extends AppCompatActivity {
     private NfcAdapter nfcAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_nfc);
 
         // Obtenez une instance de NfcAdapter
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -36,7 +38,7 @@ public class NfcActivity extends Activity {
     protected void onResume() {
         super.onResume();
         Intent intent = new Intent(this, MainActivity.class).addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE);
         IntentFilter[] intentFilters = new IntentFilter[]{};
 
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);

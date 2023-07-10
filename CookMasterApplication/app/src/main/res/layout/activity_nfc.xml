@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NfcActivity">
+    tools:context=".NfcActivity"
+    android:background="@color/white">
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        tools:ignore="UselessParent">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/nfc"/>
+            android:src="@drawable/nfc"
+            android:contentDescription="nfc" />
     </FrameLayout>
 
 </LinearLayout>
