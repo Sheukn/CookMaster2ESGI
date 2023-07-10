@@ -8,6 +8,7 @@ use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Faker\Factory as Faker;
 
 class UserTableSeeder extends Seeder
 {
@@ -45,6 +46,24 @@ class UserTableSeeder extends Seeder
             'email_verified_at' => date('Y-m-d H:i:s')
 
         ]);
+
+        $faker = Faker::create();
+        $password = bcrypt('Azerty11');
+
+        for ($i = 0; $i < 30; $i++) {
+            User::create([
+                'firstname' => $faker->firstName,
+                'name' => $faker->lastName,
+                'email' => $faker->unique()->safeEmail,
+                'address' => $faker->streetAddress,
+                'postal_code' => $faker->postcode,
+                'city' => $faker->city,
+                'country' => $faker->country,
+                'phone' => $faker->phoneNumber,
+                'password' => $password,
+                'email_verified_at' => now()
+            ]);
+        }
 
         $Teacher =  User::create([
             'firstname' => 'teacher',

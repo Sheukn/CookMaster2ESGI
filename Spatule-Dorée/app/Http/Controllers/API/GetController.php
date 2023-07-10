@@ -69,4 +69,34 @@ class GetController extends Controller{
             ], 500);
         }
     }
+
+    public function getAllUsers(Request $request){
+        try {
+            $authorizationHeader = $request->header('Authorization');
+            
+            if (!empty($authorizationHeader) && strpos($authorizationHeader, 'Bearer ') === 0) {
+                $token = substr($authorizationHeader, 7);
+                $user = User::where('api_token', $token)->first();
+
+                if($user->is_admin == 1){
+                    $users = User::all();
+                    return response()->json([
+                        'status' => true,
+                        'data' => $users
+                    ], 200);
+                }   
+            }
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Token is invalid',
+            ], 401);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }

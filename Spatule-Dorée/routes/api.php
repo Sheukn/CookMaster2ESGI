@@ -25,14 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/users', function () {
-    return UserResource::collection(User::all());
-});
+// Route::get('/users', function () {
+//     return UserResource::collection(User::all());
+// });
 
 Route::get('/auth/checkToken', [GetController::class, 'checkToken']);
 Route::get('/auth/getUserData', [GetController::class, 'getUserData']);
-
-//Route::get('/users', [PostController::class, 'getUsers']);
+Route::get('/users', [GetController::class, 'getAllUsers']);
 
 Route::post('/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);
