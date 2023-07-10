@@ -22,61 +22,50 @@ class GetController extends Controller{
 
 
     public function getUserData(Request $request){
-        $token = $request->token;
+        try {
+            $authorizationHeader = $request->header('Authorization');
 
-        $user = User::where('api_token', $token)->first();
+            if (!empty($authorizationHeader) && strpos($authorizationHeader, 'Bearer ') === 0) {
+                $token = substr($authorizationHeader, 7);
 
-        if($user){
-            return response()->json([
-                'status' => true,
-                'data' => $user
-            ]);
-        }else {
+                $user = User::where('api_token', $token)->first();
 
-            return response()->json([
-                'status' => false,
-                'message' => 'Token is invalid'
-            ], 401);
+                if ($user) {
+                    return response()->json($user);
+                }
+            }
+
+            return response()->json(['error' => 'Invalid token'], 401);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 500);
         }
-
     }
 
-
     public function checkToken(Request $request){
-
         try {
+            $authorizationHeader = $request->header('Authorization');
 
-            $token = $request->token;
+            if (!empty($authorizationHeader) && strpos($authorizationHeader, 'Bearer ') === 0) {
+                $token = substr($authorizationHeader, 7);
 
-            $user = User::where('api_token', $token)->first();
+                $user = User::where('api_token', $token)->first();
 
-            if ($user) {
-
-                return response()->json([
-
-                    'status' => true,
-
-                    'message' => 'Token is valid',
-
-                ], 200);
-            } else {
-
-                return response()->json([
-
-                    'status' => false,
-
-                    'message' => 'Token is invalid',
-
-                ], 401);
+                if ($user) {
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Token is valid',
+                    ], 200);
+                }
             }
-        } catch (\Throwable $th) {
 
             return response()->json([
-
                 'status' => false,
-
+                'message' => 'Token is invalid',
+            ], 401);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
                 'message' => $th->getMessage()
-
             ], 500);
         }
     }
