@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -16,6 +17,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 JSONObject jsonObject = new JSONObject(response);
 //                JSONObject jsonArray = jsonObject.getJSONObject("data");
                 String name = String.valueOf(jsonObject.getJSONObject("data"));
-                Toast.makeText(MainActivity.this, settings.getString("token", "") + name , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, settings.getString(name, "") + name , Toast.LENGTH_SHORT).show();
                 //
 
             }catch (Exception e){
@@ -55,13 +59,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             error.printStackTrace();
         }){
             @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            public byte[] getBody() {
-                return requestBody.getBytes();
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                String accesstoken = settings.getString("token", "");
+                headers.put("Authorization", "Bearer " + accesstoken);
+                return headers;
             }
         };
         queue.add(stringRequest);

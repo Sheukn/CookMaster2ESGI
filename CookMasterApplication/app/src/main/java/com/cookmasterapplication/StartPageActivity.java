@@ -33,50 +33,6 @@ public class StartPageActivity extends AppCompatActivity {
         this.connexion = findViewById(R.id.connexion);
         this.inscription = findViewById(R.id.inscription);
         this.quitter = findViewById(R.id.quitter);
-
-        SharedPreferences settings = getSharedPreferences("users", MODE_PRIVATE);
-
-        RequestQueue queue = Volley.newRequestQueue(StartPageActivity.this);
-        String url = "https://spatuledoree.fr/api/auth/checkToken";
-
-        JSONObject jsonBody = new JSONObject();
-        String requestBody = jsonBody.toString();
-        try {
-            jsonBody.put("token", settings.getString("token", ""));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-            try{
-                JSONObject jsonObject = new JSONObject(response);
-                boolean status = jsonObject.getBoolean("status");
-//                if(status){
-//                    Intent intent = new Intent(StartPageActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                }
-                Toast.makeText(StartPageActivity.this, "status : " + status, Toast.LENGTH_SHORT).show();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }, error -> {
-            SharedPreferences.Editor edit = settings.edit();
-            edit.remove("token");
-            edit.apply();
-        }) {
-            @Override
-            public String getBodyContentType () {
-            return "application/json; charset=utf-8";
-            }
-
-            @Override
-            public byte[] getBody () {
-            return requestBody.getBytes();
-            }
-        };
-        queue.add(stringRequest);
-
-
         this.connexion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

@@ -23,3 +23,5 @@ Spatule-Dorée/.env
 Spatule-Dorée/vendor
 Spatule-Dorée/package-lock.json
 Spatule-Dorée/composer.lock
+javaApp/.idea
+.idea

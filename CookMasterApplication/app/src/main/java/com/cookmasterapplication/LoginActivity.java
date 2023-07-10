@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,6 +21,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -57,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                        String url = "https://spatuledoree.fr/api/auth/login";
+                        String url = "https://spatuledoree.fr/api/login";
                     // Create body request
                     JSONObject jsonBody = new JSONObject();
                     String requestBody;
@@ -78,16 +82,38 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONObject jsonObject = new JSONObject(response);
                                     edit.putString("token", jsonObject.getString("token"));
                                     edit.apply();
-                                    // Toast.makeText(LoginActivity.this, jsonObject.getString("token"), Toast.LENGTH_SHORT).show();
-                                    startActivity(intent);
-                                    finish();
+
+                                    String getUserDataURL = "https://spatuledoree.fr/api/auth/getUserData";
+                                    StringRequest getUserData = new StringRequest(Request.Method.GET, getUserDataURL, new Response.Listener<String>() {
+
+                                        @Override
+                                        public void onResponse(String response) {
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                edit.putString("firstname", jsonObject.getString("firstname"));
+                                                edit.putString("name", jsonObject.getString("name"));
+                                                edit.putString("email", jsonObject.getString("email"));
+                                                edit.apply();
+                                                startActivity(intent);
+                                                finish();
+                                            }catch (Exception e){ e.printStackTrace(); }
+                                        }
+                                    }, error -> {Toast.makeText(LoginActivity.this, "Cant retrieve data", Toast.LENGTH_SHORT).show();
+                                    }) {
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> headers = new HashMap<>();
+                                            String token = settings.getString("token", "null");
+                                            headers.put("Authorization", "Bearer " + token);
+                                            return headers;
+                                        }};
+                                        queue.add(getUserData);
+
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                            }catch (JSONException e) { e.printStackTrace(); }
                             }
-                        }
-                    }, error -> {
-                        Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        }, error -> {
+                        Toast.makeText(LoginActivity.this, "Cant retrieve token", Toast.LENGTH_SHORT).show();
                     }) {
                         @Override
                         public String getBodyContentType() {
