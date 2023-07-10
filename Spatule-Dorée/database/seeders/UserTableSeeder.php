@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
-use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,8 +16,9 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        User::truncate();
+        //User::truncate();
         DB::table('role_user')->truncate();
+        DB::table('event_has_user')->truncate();
 
         $Admin = User::create([
             'firstname' => 'Admin',

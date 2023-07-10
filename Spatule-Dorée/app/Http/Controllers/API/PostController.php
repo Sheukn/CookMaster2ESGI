@@ -175,6 +175,35 @@ class PostController extends Controller
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Get all users.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsers()
+    {
+        //Get id , firstname, name, email, address
+        $users = User::all()->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'firstname' => $user->firstname,
+                'name' => $user->name,
+                'email' => $user->email,
+                'address' => $user->address,
+
+            ];
+        });
+
+        return response()->json([
+            'status' => true,
+            'data' => $users
+        ]);
+    }
+
+
+    /**
+>>>>>>> cc4c096788c3c2879c45077ddb0f15cb78599428
 
      * Update the specified resource in storage.
 

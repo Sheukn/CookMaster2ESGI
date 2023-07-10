@@ -17,9 +17,12 @@
                 </li>
 
                 <li class="nav-item pe-4">
-                    <a class="nav-link" href="#">Nos matériels de cuisines</a>
+                    <a class="nav-link" href="/events">Nos Evenements</a>
                 </li>
 
+                <li class="nav-item pe-4">
+                    <a class="nav-link" href="#">Nos matériels de cuisines</a>
+                </li>
 
                 @auth
                     <li class="nav-item pe-4">
