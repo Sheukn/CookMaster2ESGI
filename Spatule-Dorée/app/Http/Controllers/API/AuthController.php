@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Str;
+
+
 
 
 class AuthController extends Controller
@@ -178,8 +181,10 @@ class AuthController extends Controller
             }
 
 
-
+            $token = Str::random(32);
+            $insertToken = User::where('email', $request->email)->update(['api_token' => $token]);
             $user = User::where('email', $request->email)->first();
+            $fetchToken = $user->api_token;
 
 
 
@@ -189,7 +194,7 @@ class AuthController extends Controller
 
                 'message' => 'User Logged In Successfully',
 
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+                'token' => $fetchToken
 
             ], 200);
         } catch (\Throwable $th) {
@@ -232,4 +237,5 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
 }

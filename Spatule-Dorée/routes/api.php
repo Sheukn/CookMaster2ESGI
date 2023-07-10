@@ -4,8 +4,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\GetController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,14 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/users', function () {
-    return UserResource::collection(User::all());
-});
+// Route::get('/users', function () {
+//     return UserResource::collection(User::all());
+// });
+
+Route::get('/auth/checkToken', [GetController::class, 'checkToken']);
+Route::get('/auth/getUserData', [GetController::class, 'getUserData']);
+Route::get('/users', [GetController::class, 'getAllUsers']);
 
 
-
-// Route::get('/users', [PostController::class, 'getUsers']);
-
-// Route::post('/auth/register', [AuthController::class, 'createUser']);
-// Route::post('/auth/login', [AuthController::class, 'loginUser']);
-// Route::post('/auth/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
+Route::post('/register', [AuthController::class, 'createUser']);
+Route::post('/login', [AuthController::class, 'loginUser']);
+Route::post('/logout', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
