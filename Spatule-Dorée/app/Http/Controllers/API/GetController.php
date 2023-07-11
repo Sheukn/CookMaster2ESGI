@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Models\User;
+use App\Models\Recipe;
+
 
 use Illuminate\Http\Request;
 
@@ -87,6 +89,69 @@ class GetController extends Controller{
                 }   
             }
 
+            return response()->json([
+                'status' => false,
+                'message' => 'Token is invalid',
+            ], 401);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+
+    public function getRecipes(Request $request){
+        try {
+            $authorizationHeader = $request->header('Authorization');
+            if (!empty($authorizationHeader) && strpos($authorizationHeader, 'Bearer ') === 0) {
+                $token = substr($authorizationHeader, 7);
+
+                $user = User::where('api_token', $token)->first();
+
+                if($user){
+                    $recipe = Recipe::all();
+                    return response()->json([
+                        'status' => true,
+                        'data' => $recipe
+                    ], 200);
+                }   
+            }
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Token is invalid',
+            ], 401);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getRecettesByGastronomy(Request $request, $gastronomy)
+{
+    // Récupère les recettes avec l'origine spécifiée
+        try {
+            $authorizationHeader = $request->header('Authorization');
+            if (!empty($authorizationHeader) && strpos($authorizationHeader, 'Bearer ') === 0) {
+                $token = substr($authorizationHeader, 7);
+
+                $user = User::where('api_token', $token)->first();
+
+                if($user){
+                    $recettes = Recipe::where('gastronomy', $gastronomy)->get();
+                    return response()->json([
+                        'status' => true,
+                        'data' => $recettes
+                    ], 200);
+                }   
+            }
+ 
             return response()->json([
                 'status' => false,
                 'message' => 'Token is invalid',
