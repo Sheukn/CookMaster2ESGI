@@ -32,6 +32,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/auth/checkToken', [GetController::class, 'checkToken']);
 Route::get('/auth/getUserData', [GetController::class, 'getUserData']);
 Route::get('/users', [GetController::class, 'getAllUsers']);
+Route::get('/recipes', [GetController::class, 'getRecipes']);
+Route::get('/recipes/{gastronomy}', [GetController::class, 'getRecettesByGastronomy']);
+
 
 
 Route::post('/register', [AuthController::class, 'createUser']);
