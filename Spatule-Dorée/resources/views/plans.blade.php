@@ -113,7 +113,7 @@
                                     Chèque cadeau de 5€ tous les 3 nouveaux inscrits (hors formule Free)
                                 </li>
                             </ul>
-                            <a href="{{ route('subscription', ['plan' => 'starterPlan']) }}"
+                            <a href="{{ route('plans.show', $plan->slug) }}"
                                 class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
                         </div>
                     </div>
