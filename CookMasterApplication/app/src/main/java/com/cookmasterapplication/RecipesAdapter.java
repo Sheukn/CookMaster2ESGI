@@ -57,7 +57,10 @@ public class RecipesAdapter extends BaseAdapter{
         difficulty.setText(current.getDifficulty());
         prep_time.setText("Temps de preparation\n" + current.getPrep_time() + " min");
         cooking_time.setText("Temps de cuisson\n" + current.getCooking_time() + " min");
-        image.setImageResource(R.drawable.spatule);
+        if (current.getImageId() == " ")
+            image.setImageResource(R.drawable.spatule);
+        else
+            image.setImageResource(Integer.parseInt(current.getImageId()));
         origin.setText("Origine " +  current.getGastronomy());
 
         return view;
