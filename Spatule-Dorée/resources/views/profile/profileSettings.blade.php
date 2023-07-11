@@ -9,32 +9,19 @@
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" width="150px"
                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold">{{ $user->firstname }}</span>
+                    <span class="font-weight-bold">{{ $user->name }}</span>
                     <span class="text-black-50">{{ $user->email }}</span>
                 </div>
             </div>
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
+                        <h4 class="text-right">Paramètre profil</h4>
                     </div>
                     <form method="POST" action="{{ route('users.profile.update', $user) }}">
                         @csrf
                         @method('PATCH')
                         <div class="row mt-2">
-                            <div class="col-md-6">
-                                <label for="firstname" class="labels">Prénom</label>
-                                <input id="firstname" type="text"
-                                    class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                    value="{{ old('firstname') ?? $user->firstname }}" required autocomplete="firstname"
-                                    autofocus>
-                                @error('firstname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
                             <div class="col-md-6">
                                 <label for="name" class="labels">Nom</label>
                                 <input id="name" type="text"
@@ -131,8 +118,8 @@
                             </div>
                         </div>
 
-                        <div class="mt-5 text-center">
-                            <button type="submit" class="btn btn-primary profile-button">Save Profile</button>
+                        <div class="mt-4 text-center">
+                            <button type="submit" class="btn btn-primary profile-button">Sauvegarder</button>
                         </div>
                     </form>
                 </div>

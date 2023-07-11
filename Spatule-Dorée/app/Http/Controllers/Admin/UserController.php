@@ -71,7 +71,6 @@ class UserController extends Controller
     {
 
         $user->roles()->sync($request->roles);
-        $user->firstname = $request->firstname;
         $user->name = $request->name;
         $user->email = $request->email;
 

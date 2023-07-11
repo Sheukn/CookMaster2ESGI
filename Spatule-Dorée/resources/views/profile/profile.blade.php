@@ -8,7 +8,7 @@
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
                         width="150px"
                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
-                        class="font-weight-bold">{{ $user->firstname }}</span><span
+                        class="font-weight-bold">{{ $user->name }}</span><span
                         class="text-black-50">{{ $user->email }}</span><span>
                     </span></div>
             </div>
@@ -19,12 +19,7 @@
                     </div>
                     <div class="row mt-2">
                         <table>
-                            <tr>
-                                <td class="labels">Prénom</td>
-                                <td><input id="firstname" class="form-control" name="firstname"
-                                        value="{{ old('firstname') ?? $user->firstname }}" required autocomplete="firstname"
-                                        autofocus disabled></td>
-                            </tr>
+
                             <tr>
                                 <td>Nom</td>
                                 <td><input id="name" class="form-control" name="name"
@@ -32,12 +27,7 @@
                                         disabled>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Mobile</td>
-                                <td><input type="text" class="form-control"
-                                        value="{{ old('firstname') ?? $user->phone }}" required autocomplete="phone"
-                                        autofocus disabled></td>
-                            </tr>
+
                             <tr>
                                 <td>Adresse</td>
                                 <td><input type="text" class="form-control"
@@ -62,6 +52,12 @@
                                 <td>Pays</td>
                                 <td><input type="text" class="form-control"
                                         value="{{ old('country') ?? $user->country }} " required autocomplete="country"
+                                        autofocus disabled></td>
+                            </tr>
+                            <tr>
+                                <td>Mobile</td>
+                                <td><input type="text" class="form-control"
+                                        value="{{ old('firstname') ?? $user->phone }}" required autocomplete="phone"
                                         autofocus disabled></td>
                             </tr>
                             <tr>

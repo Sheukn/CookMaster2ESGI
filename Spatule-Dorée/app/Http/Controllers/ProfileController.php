@@ -26,7 +26,6 @@ class ProfileController extends Controller
         // Vérifier si l'utilisateur est authentifié
         if (Auth::check()) {
             $request->validate([
-                'firstname' => 'required|string|max:255',
                 'name' => 'required|string|max:255',
                 'phone' => 'required|string|max:255',
                 'address' => 'required|string|max:255',
@@ -37,7 +36,6 @@ class ProfileController extends Controller
                 // Ajoutez d'autres règles de validation selon vos besoins
             ]);
 
-            $user->firstname = $request->firstname;
             $user->name = $request->name;
             $user->phone = $request->phone;
             $user->address = $request->address;

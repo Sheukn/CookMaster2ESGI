@@ -11,8 +11,7 @@
                 <header class="text-center mb-5 text-white">
                     <div class="row">
                         <div class="col-lg-12 mx-auto">
-                            <h1>Laravel 9 Cashier Stripe Subscription</h1>
-                            <h3>PRICING</h3>
+                            <h1 class="display-4">Nos formules</h1>
                         </div>
                     </div>
                 </header>
@@ -61,55 +60,114 @@
                                     <i class="fa fa-times mr-2"></i>
                                     <del>Récompense cooptation nouvel inscrit</del>
                                 </li>
-                                <li class="mb-3 text-muted">
-                                    <i class="fa fa-times mr-2"></i>
-                                    <del>Bonus de renouvellement de l'abonnement </del>
-                                </li>
-
                             </ul>
-                            <a href="#" class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
+                            <a href="{{ route('subscription', ['plan' => 'freePlan']) }}"
+                                class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
                         </div>
                     </div>
 
-                    @foreach ($plans as $plan)
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="bg-white p-5 rounded-lg shadow">
-                                <h1 class="h6 text-uppercase font-weight-bold mb-4">{{ $plan->name }}</h1>
-                                <h2 class="h1 font-weight-bold">{{ $plan->price }}€<span
-                                        class="text-small font-weight-normal ml-2">/ mois</span></h2>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="bg-white p-5 rounded-lg shadow">
+                            <h1 class="h6 text-uppercase font-weight-bold mb-4">Abonnement Premium</h1>
+                            <h2 class="h1 font-weight-bold">9,99€ <span class="text-small font-weight-normal ml-2">/
+                                    mois</span></h2>
+                            <h2 class="h1 font-weight-bold">ou 113€<span class="text-small font-weight-normal ml-2">/
+                                    an</span></h2>
 
-                                <div class="custom-separator my-4 mx-auto bg-primary"></div>
+                            <div class="custom-separator my-4 mx-auto bg-primary"></div>
 
-                                <ul class="list-unstyled my-5 text-small text-left font-weight-normal">
-                                    <li class="mb-3">
-                                        <i class="fa fa-check mr-2 text-primary"></i>
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="fa fa-check mr-2 text-primary"></i> Sed ut perspiciatis
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="fa fa-check mr-2 text-primary"></i> At vero eos et
-                                        accusamus
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="fa fa-check mr-2 text-primary"></i> Nam libero tempore
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="fa fa-check mr-2 text-primary"></i> Sed ut perspiciatis
-                                    </li>
-                                    <li class="mb-3 text-muted">
-                                        <i class="fa fa-times mr-2"></i>
-                                        <del>Sed ut perspiciatis</del>
-                                    </li>
-                                </ul>
-                                <a href="{{ route('plans.show', $plan->slug) }}"
-                                    class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
-                            </div>
+                            <ul class="list-unstyled my-5 text-small text-left font-weight-normal">
+                                <li class="mb-3 text-muted">
+                                    <i class="fa fa-times mr-2"></i>
+                                    <del>Présence de publicités dans le contenu</del>
+                                </li>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Commenter publier un avis
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Accès aux leçons : 5 par jour
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Accès au service de tchat avec un chef
+                                </li>
+                                <li class="mb-3 text-muted">
+                                    <i class="fa fa-times mr-2"></i>
+                                    <del>Réduction permanente de 5% dans la boutique</del>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Livraison offerte sur la boutique:
+                                    uniquement en point relai
+                                </li>
+                                <li class="mb-3 text-muted">
+                                    <i class="fa fa-times mr-2"></i>
+                                    <del>Accès au service de location d'espace de cuisine</del>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Invitation à des évènements exclusifs
+                                    (dégustation, rencontres, ventes privées...)
+                                </li>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Récompense cooptation nouvel inscrit :
+                                    Chèque cadeau de 5€ tous les 3 nouveaux inscrits (hors formule Free)
+                                </li>
+                            </ul>
+                            <a href="{{ route('subscription', ['plan' => 'starterPlan']) }}"
+                                class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
                         </div>
-                    @endforeach
+                    </div>
+
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="bg-white p-5 rounded-lg shadow">
+                            <h1 class="h6 text-uppercase font-weight-bold mb-4">Abonnement Pro</h1>
+                            <h2 class="h1 font-weight-bold">19,99€<span class="text-small font-weight-normal ml-2">/
+                                    mois</span></h2>
+                            <h2 class="h1 font-weight-bold">ou 220€<span class="text-small font-weight-normal ml-2">/
+                                    an</span></h2>
+
+                            <div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+                            <ul class="list-unstyled my-5 text-small text-left font-weight-normal">
+                                <li class="mb-3 text-muted">
+                                    <i class="fa fa-times mr-2"></i>
+                                    <del>Présence de publicités dans le contenu</del>
+                                </li>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Commenter publier un avis
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Accès illimité aux leçons
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Accès au service de tchat avec un chef
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Réduction permanente de 5% dans la
+                                    boutique
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Livraison offerte sur la boutique
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Accès au service de location d'espace de
+                                    cuisine
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Invitation à des évènements exclusifs
+                                    (dégustation, rencontres, ventes privées...)
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fa fa-check mr-2 text-primary"></i> Récompense cooptation nouvel inscrit :
+                                    Chèque cadeau de 5€ pour chaque nouvel inscrit (hors formule Free) + bonus de 3% du
+                                    montant sur le total de la première
+                                </li>
+                            </ul>
+                            <a href="{{ route('subscription', ['plan' => 'masterPlan']) }}"
+                                class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-
-    </div>
-@endsection
+        @endsection

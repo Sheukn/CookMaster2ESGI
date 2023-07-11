@@ -5,52 +5,50 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        You will be charged ${{ number_format($plan->price, 2) }} for
-                        {{ $plan->name }} Plan
-                        </div>
-                    
+                        You will be charged {{ $plan->price_per_month }}€ for
+                        {{ $plan->subscription_type }} Plan
+                    </div>
+
                     <div class="card-body">
-                        
+
                         <form id="payment-form" action="{{ route('subscription.create') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="plan" id="plan"
-                                value="{{ $plan->id }}">
-                            
+                            <input type="hidden" name="plan" id="plan" value="{{ $plan->id }}">
+
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4">
                                     <div class="form-group">
                                         <label for="">Name</label>
-                                        <input type="text" name="name"
-                                            id="card-holder-name" class="form-control" value=""
-                                            placeholder="Name on the card">
-                                        </div>
+                                        <input type="text" name="name" id="card-holder-name" class="form-control"
+                                            value="" placeholder="Name on the card">
                                     </div>
                                 </div>
-                            
+                            </div>
+
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4">
                                     <div class="form-group">
                                         <label for="">Card details</label>
                                         <div id="card-element"></div>
-                                        </div>
                                     </div>
+                                </div>
                                 <div class="col-xl-12 col-lg-12">
-                                    
+
                                     <hr>
-                                    <button type="submit" class="btn btn-primary"
-                                        id="card-button" data-secret="{{ $intent->client_secret }}">Purchase</button>
-                                    
+                                    <button type="submit" class="btn btn-primary" id="card-button"
+                                        data-secret="{{ $intent->client_secret }}">Purchase</button>
+
                                 </div>
-                                </div>
-                            
-                            </form>
-                        
-                        </div>
+                            </div>
+
+                        </form>
+
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-    
+
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         const stripe = Stripe('{{ env('STRIPE_KEY') }}')
