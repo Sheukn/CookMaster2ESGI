@@ -30,6 +30,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('api_token')->unique()->nullable()->default(null);
             $table->timestamps();
+            $table->integer('coursesValidated')->default(0);
         });
     }
 
