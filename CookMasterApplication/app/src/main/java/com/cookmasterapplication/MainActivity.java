@@ -37,13 +37,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         String url = "https://spatuledoree.fr/api/auth/getUserData";
 
-        JSONObject jsonBody = new JSONObject();
-        String requestBody = jsonBody.toString();
-        try {
-            jsonBody.put("token", settings.getString("token", ""));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
             try{
                 JSONObject jsonObject = new JSONObject(response);

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -45,15 +46,19 @@ public class RecipesAdapter extends BaseAdapter{
 
         TextView name = view.findViewById(R.id.name);
         TextView difficulty = view.findViewById(R.id.difficulty);
-        TextView time = view.findViewById(R.id.time);
-        TextView author = view.findViewById(R.id.author);
+        TextView prep_time = view.findViewById(R.id.prepTime);
+        TextView cooking_time = view.findViewById(R.id.cookTime);
+        TextView origin = view.findViewById(R.id.origine);
+        ImageView image = view.findViewById(R.id.image);
 
         Recipes current = (Recipes)getItem(i);
 
         name.setText(current.getName());
         difficulty.setText(current.getDifficulty());
-        time.setText(current.getTime());
-        author.setText(current.getAuthor());
+        prep_time.setText("Temps de preparation\n" + current.getPrep_time() + " min");
+        cooking_time.setText("Temps de cuisson\n" + current.getCooking_time() + " min");
+        image.setImageResource(R.drawable.spatule);
+        origin.setText("Origine " +  current.getGastronomy());
 
         return view;
     }
