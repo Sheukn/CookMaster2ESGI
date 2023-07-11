@@ -175,6 +175,8 @@ class PostController extends Controller
     }
 
     /**
+<<<<<<< HEAD
+=======
      * Get all users.
      *
      * @return \Illuminate\Http\Response
@@ -201,6 +203,7 @@ class PostController extends Controller
 
 
     /**
+>>>>>>> cc4c096788c3c2879c45077ddb0f15cb78599428
 
      * Update the specified resource in storage.
 
