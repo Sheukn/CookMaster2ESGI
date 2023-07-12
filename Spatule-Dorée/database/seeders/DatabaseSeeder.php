@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RecipesSeeder::class);
         $this->call(IngredientsSeeder::class);
         $this->call(RecipeIngredientSeeder::class);
-        $this->call(CertificationTableSeeder::class);
-        $this->call(CertificationHasUserTableSeeder::class);
-        $this->call(StepHasUserTableSeeder::class);
+        // $this->call(CertificationTableSeeder::class);
+        // $this->call(CertificationHasUserTableSeeder::class);
+        // $this->call(StepHasUserTableSeeder::class);
     }
 }

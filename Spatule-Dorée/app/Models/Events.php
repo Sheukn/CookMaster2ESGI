@@ -36,15 +36,15 @@ class Events extends Model
         return $this->belongsToMany(Rooms::class);
     }
 
-    public function certification(): HasOne
-    {
-        return $this->hasOne(Certification::class);
-    }
+    // public function certification(): HasOne
+    // {
+    //     return $this->hasOne(Certification::class);
+    // }
 
-    public function steps(): BelongsToMany
-    {
-        return $this->belongsToMany(Events::class, 'step_has_user', 'step_id', 'user_id');
-    }
+    // public function steps(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Events::class, 'step_has_user', 'step_id', 'user_id');
+    // }
 
     public function getImageUrlAttribute()
     {

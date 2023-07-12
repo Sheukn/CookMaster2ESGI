@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FormationController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CertificationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +22,7 @@ use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 
 Auth::routes(['verify' => true]);
@@ -63,7 +66,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/subscription/success', [PlanController::class, 'success'])->name('subscription.success');
 });
 
-
+Route::get('/formation/create', [FormationController::class, 'create'])->name('formation.create');
+Route::post('/formation/store', [FormationController::class, 'store'])->name('formation.store');
+Route::get('/formation/{formation}', [FormationController::class, 'index'])->name('formation.index');
+Route::get('/formation/submit/{formation}', [FormationController::class, 'submit'])->name('formation.submit');
+Route::get('/certification', [CertificationController::class, 'index'])->name('certifications.index');
+Route::get('/certification/download/{certification}', [CertificationController::class, 'download'])->name('certifications.download');
 
 Route::get('/my-events', [EventsController::class, 'myEvents'])->name('events.myEvents');
 
