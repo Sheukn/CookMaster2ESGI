@@ -8,7 +8,7 @@
                     <div class="card-header">Créer un événement</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('events.index') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.events.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -40,11 +40,37 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="images">Images de l'événement</label>
-                                <input type="file" class="form-control" id="images" name="images[]" multiple>
+                                <label for="diploma_title">Intitulé du diplôme</label>
+                                <input type="text" class="form-control" id="diploma_title" name="diploma_title" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Créer</button>
+                            <div class="form-group">
+                                <label for="diploma_validity">Durée de validité du diplôme</label>
+                                <input type="text" class="form-control" id="diploma_validity" name="diploma_validity"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="images">Images de l'événement</label>
+                                <input type="file" class="form-control" id="images" name="images" multiple>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image_preview">Aperçu de l'image</label>
+                                @if (isset($event) && $event->image_path)
+                                    <img src="{{ $event->image_path }}" alt="Image de l'événement" id="image_preview"
+                                        style="max-width: 200px; max-height: 200px;">
+                                @else
+                                    <img src="{{ asset('images/placeholder.png') }}" alt="Aucune image sélectionnée"
+                                        id="image_preview" style="max-width: 200px; max-height: 200px;">
+                                @endif
+                            </div>
+
+                            <div class="form-group" style="margin-top: 10px;">
+                                <button type="submit" class="btn btn-primary">Créer</button>
+                            </div>
+
+
                         </form>
                     </div>
                 </div>

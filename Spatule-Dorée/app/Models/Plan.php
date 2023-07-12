@@ -35,6 +35,8 @@ class Plan extends Model
         'renewal_bonus',
     ];
 
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
