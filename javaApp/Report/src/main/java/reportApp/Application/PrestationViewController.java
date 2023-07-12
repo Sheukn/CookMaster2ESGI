@@ -15,10 +15,6 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.image.WritableImage;
-
-
 import javafx.scene.image.Image;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -29,22 +25,20 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import java.io.IOException;
 
 
-public class ClientViewController {
-
-
+public class PrestationViewController {
     String token = Token.getInstance().getToken();
 
     @FXML
-    private LineChart<?, ?> SellsChart;
+    private BarChart<?, ?> coursesCount;
 
     @FXML
-    private PieChart revenueChart;
+    private LineChart<?, ?> eventCount;
 
     @FXML
-    private BarChart<?, ?> subChart;
+    private PieChart foodType;
 
     @FXML
-    private StackedBarChart<?, ?> userChart;
+    private StackedBarChart<?, ?> tastingCount;
 
     private String[] months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 
@@ -55,10 +49,10 @@ public class ClientViewController {
     @FXML
     void generate(ActionEvent event) {
         // Clear the charts
-        SellsChart.getData().clear();
-        revenueChart.getData().clear();
-        subChart.getData().clear();
-        userChart.getData().clear();
+        eventCount.getData().clear();
+        foodType.getData().clear();
+        coursesCount.getData().clear();
+        tastingCount.getData().clear();
         // Read the data from the json file
 
         XYChart.Series link = new XYChart.Series<>();
@@ -72,8 +66,8 @@ public class ClientViewController {
             pub.getData().add(new XYChart.Data(months[i], pubCount));
         }
 
-        userChart.getData().add(link);
-        userChart.getData().add(pub);
+        tastingCount.getData().add(link);
+        tastingCount.getData().add(pub);
 
         // Add data to the revenue chart
         XYChart.Series or = new XYChart.Series<>();
@@ -96,12 +90,12 @@ public class ClientViewController {
         for (int i = 0; i < months.length; i++) {
             sell.getData().add(new XYChart.Data(months[i], (int)(Math.random()*100)));
         }
-        SellsChart.getData().add(sell);
+        eventCount.getData().add(sell);
 
         // Add data to the revenue chart
-        PieChart.Data premiumData = new PieChart.Data("Premium", (int)(Math.random()*100));
-        PieChart.Data Sells = new PieChart.Data("Ventes", (int)(Math.random()*100));
-        PieChart.Data pubData = new PieChart.Data("Publicité", (int)(Math.random()*100));
+        PieChart.Data entrees = new PieChart.Data("Entrées", (int)(Math.random()*100));
+        PieChart.Data plats = new PieChart.Data("Plats", (int)(Math.random()*100));
+        PieChart.Data desserts = new PieChart.Data("Desserts", (int)(Math.random()*100));
 
         // wait 1 second before adding the data to the charts
         try {
@@ -110,12 +104,12 @@ public class ClientViewController {
             e.printStackTrace();
         }
 
-        subChart.getData().add(or);
-        subChart.getData().add(argent);
-        subChart.getData().add(bronze);
-        revenueChart.getData().add(premiumData);
-        revenueChart.getData().add(Sells);
-        revenueChart.getData().add(pubData);
+        coursesCount.getData().add(or);
+        coursesCount.getData().add(argent);
+        coursesCount.getData().add(bronze);
+        foodType.getData().add(entrees);
+        foodType.getData().add(plats);
+        foodType.getData().add(desserts);
     }
 
     @FXML
@@ -172,7 +166,7 @@ public class ClientViewController {
             contentStream.close();
 
             // Save the PDF document
-            document.save("clientData.pdf");
+            document.save("prestationData.pdf");
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -181,28 +175,28 @@ public class ClientViewController {
 
     private void generateLineChartImage(File file) throws IOException {
         // Generate the LineChart using JavaFX and save it as an image file
-        Image lineChartImage = SellsChart.snapshot(new SnapshotParameters(), null);
+        Image lineChartImage = eventCount.snapshot(new SnapshotParameters(), null);
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(lineChartImage, null);
         ImageIO.write(bufferedImage, "png", file);
     }
 
     private void generatePieChartImage(File file) throws IOException {
         // Generate the PieChart using JavaFX and save it as an image file
-        Image pieChartImage = revenueChart.snapshot(new SnapshotParameters(), null);
+        Image pieChartImage = foodType.snapshot(new SnapshotParameters(), null);
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(pieChartImage, null);
         ImageIO.write(bufferedImage, "png", file);
     }
 
     private void generateStackedBarChartImage(File file) throws IOException {
         // Generate the PieChart using JavaFX and save it as an image file
-        Image pieChartImage = userChart.snapshot(new SnapshotParameters(), null);
+        Image pieChartImage = tastingCount.snapshot(new SnapshotParameters(), null);
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(pieChartImage, null);
         ImageIO.write(bufferedImage, "png", file);
     }
 
     private  void generateBarChartImage(File file)throws  IOException {
         // Generate the PieChart using JavaFX and save it as an image file
-        Image pieChartImage = subChart.snapshot(new SnapshotParameters(), null);
+        Image pieChartImage = coursesCount.snapshot(new SnapshotParameters(), null);
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(pieChartImage, null);
         ImageIO.write(bufferedImage, "png", file);
     }

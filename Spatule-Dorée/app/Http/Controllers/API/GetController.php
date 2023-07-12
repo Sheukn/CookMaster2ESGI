@@ -191,4 +191,26 @@ class GetController extends Controller{
             ], 500);
         }
     }
+
+    public function getSubscriptions(Request $request){
+        try{
+            $authorizationHeader = $request->header('Authorization');
+            if (!empty($authorizationHeader) && strpos($authorizationHeader, 'Bearer ') === 0) {
+                $token = substr($authorizationHeader, 7);
+                $user = User::where('api_token', $token)->first();
+                if($user){
+                    $subscription = $user->subscriptions()->first();
+                    return response()->json([
+                        'status' => true,
+                        'data' => $subscription
+                    ], 200);
+                }
+        }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }   
 }
