@@ -61,7 +61,7 @@
                                     <del>Récompense cooptation nouvel inscrit</del>
                                 </li>
                             </ul>
-                            <a href="{{ route('subscription', ['plan' => 'freePlan']) }}"
+                            <a href="{{ route('subscription.checkout', ['plan' => 'freePlan']) }}"
                                 class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="bg-white p-5 rounded-lg shadow">
                             <h1 class="h6 text-uppercase font-weight-bold mb-4">Abonnement Premium</h1>
-                            <h2 class="h1 font-weight-bold">9,99€ <span class="text-small font-weight-normal ml-2">/
+                            <h2 class="h1 font-weight-bold">9,90€ <span class="text-small font-weight-normal ml-2">/
                                     mois</span></h2>
                             <h2 class="h1 font-weight-bold">ou 113€<span class="text-small font-weight-normal ml-2">/
                                     an</span></h2>
@@ -113,7 +113,7 @@
                                     Chèque cadeau de 5€ tous les 3 nouveaux inscrits (hors formule Free)
                                 </li>
                             </ul>
-                            <a href="{{ route('plans.show', $plan->slug) }}"
+                            <a href="{{ route('subscription.checkout', ['plan' => 'starterPlan']) }}"
                                 class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="bg-white p-5 rounded-lg shadow">
                             <h1 class="h6 text-uppercase font-weight-bold mb-4">Abonnement Pro</h1>
-                            <h2 class="h1 font-weight-bold">19,99€<span class="text-small font-weight-normal ml-2">/
+                            <h2 class="h1 font-weight-bold">19€<span class="text-small font-weight-normal ml-2">/
                                     mois</span></h2>
                             <h2 class="h1 font-weight-bold">ou 220€<span class="text-small font-weight-normal ml-2">/
                                     an</span></h2>
@@ -164,7 +164,7 @@
                                     montant sur le total de la première
                                 </li>
                             </ul>
-                            <a href="{{ route('subscription', ['plan' => 'masterPlan']) }}"
+                            <a href="{{ route('subscription.checkout', ['plan' => 'masterPlan']) }}"
                                 class="btn btn-primary btn-block shadow rounded-pill">Souscrire</a>
                         </div>
                     </div>

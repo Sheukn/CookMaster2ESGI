@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('certification', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->dateTime('start_event');
-            $table->dateTime('end_event');
-            $table->text('description');
-            $table->boolean('is_physics');
-            $table->string('image_path')->nullable();
+            $table->string('title');
+            $table->string('image');
+            $table->string('level');
+            $table->string('validity_time');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('certification');
     }
 };

@@ -56,7 +56,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->firstname }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -72,7 +72,7 @@
                                     @can('manage-users')
                                         <a class="dropdown-item" href="{{ route('admin.users.index') }}"> Liste des
                                             utilisateurs</a>
-                                        <a class="dropdown-item" href="{{ route('events.index') }}"> Liste des
+                                        <a class="dropdown-item" href="{{ route('admin.events.index') }}"> Liste des
                                             évenements</a>
                                         <a class="dropdown-item" href="{{ route('admin.events.create') }}"> Création d'un
                                             évenement</a>

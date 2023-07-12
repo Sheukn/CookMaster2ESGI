@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
-use App\Models\Subscription;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
@@ -21,7 +18,7 @@ class PlanController extends Controller
      */
     public function index(): View
     {
-        return view('plans');
+        return view("plans");
     }
 
     /**
@@ -53,7 +50,7 @@ class PlanController extends Controller
     {
         return [
             'subscription_type' => 'starterPlan',
-            'price_per_month' => 9.9,
+            'price_per_month' => 9.90,
             'annual_price' => 113,
             'advertising' => false,
             'commenting' => true,
@@ -100,6 +97,7 @@ class PlanController extends Controller
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date'],
             'subscription_price' => ['required', 'string'],
+            'price_per_month' => ['required', 'string'],
         ]);
 
         $user = Auth::user();
@@ -110,6 +108,7 @@ class PlanController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'subscription_price' => $request->subscription_price,
+            'price_per_month' => $request->price_per_month
         ]);
 
         $plan->save();
@@ -141,10 +140,9 @@ class PlanController extends Controller
         $user = Auth::user();
         $subscriptionDetails = $this->getSubscriptionDetails($plan);
 
-        if ($subscriptionDetails == 'freePlan') {
-            return redirect()->route('home')->with('success', __('Free plan subscription created'));
+        if ($subscriptionDetails['subscription_type'] === 'freePlan') {
+            return redirect()->route('home')->with('success', 'Free plan subscription created');
         } else {
-
             Stripe::setApiKey(env('STRIPE_SECRET'));
 
             $intent = PaymentIntent::create([
@@ -154,13 +152,13 @@ class PlanController extends Controller
 
             return view('subscription', [
                 'clientSecret' => $intent->client_secret,
-                'plan' => $plan,
+                'plan' => $subscriptionDetails,
             ]);
         }
     }
 
     public function success()
     {
-        return redirect()->route('home')->with('success', __('Subscription successful'));
+        return view('subscription_success');
     }
 }

@@ -21,6 +21,14 @@
                         <table>
 
                             <tr>
+                                <td>Prénom</td>
+                                <td><input id="firstname" class="form-control" name="firstname"
+                                        value="{{ old('firstname') ?? $user->firstname }}" required autocomplete="firstname"
+                                        autofocus disabled>
+                                </td>
+                            </tr>
+
+                            <tr>
                                 <td>Nom</td>
                                 <td><input id="name" class="form-control" name="name"
                                         value="{{ old('name') ?? $user->name }}" required autocomplete="name" autofocus
