@@ -43,7 +43,8 @@ class UserTableSeeder extends Seeder
             'country' => 'France',
             'phone' => '0613026330',
             'password' => bcrypt('Azerty11'),
-            'email_verified_at' => date('Y-m-d H:i:s')
+            'email_verified_at' => date('Y-m-d H:i:s'),
+
 
         ]);
 
@@ -61,12 +62,17 @@ class UserTableSeeder extends Seeder
                 'country' => $faker->country,
                 'phone' => $faker->phoneNumber,
                 'password' => $password,
-                'email_verified_at' => date('Y-m-d H:i:s')
+                'email_verified_at' => date('Y-m-d H:i:s'),
+                'is_teacher' => $faker->boolean(20),
+
+
+
+
             ]);
         }
 
         $Teacher =  User::create([
-            'firstname' => 'Teacher', // 'firstname' => 'Teacher
+            'firstname' => 'Teacher',
             'name' => 'teacher',
             'email' => 'teacher@exemple.com',
             'address' => '23 rue Balzac',
@@ -76,7 +82,10 @@ class UserTableSeeder extends Seeder
             'phone' => '0613026330',
             'password' => bcrypt('Azerty11'),
             'is_teacher' => 1,
-            'email_verified_at' => date('Y-m-d H:i:s')
+            'email_verified_at' => date('Y-m-d H:i:s'),
+
+
+
 
 
         ]);

@@ -17,13 +17,8 @@
                 </li>
 
                 <li class="nav-item pe-4">
-                    <a class="nav-link" href="/events">Nos Evenements</a>
+                    <a class="nav-link" href="/my-events">Nos Événements</a>
                 </li>
-
-                <li class="nav-item pe-4">
-                    <a class="nav-link" href="#">Nos matériels de cuisines</a>
-                </li>
-
                 @auth
                     <li class="nav-item pe-4">
                         <a class="nav-link" href="{{ route('logout') }}"

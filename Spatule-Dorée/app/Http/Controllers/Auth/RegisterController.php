@@ -74,7 +74,7 @@ class RegisterController extends Controller
         //var_dump($data);
         //var_dump($data['is_teacher']);
         $user = User::create([
-            'firstname' => $data['first_name'], // 'first_name' => 'John
+            'firstname' => $data['firstname'], // 'first_name' => 'John
             'name' => $data['name'],
             'address' => $data['address'],
             'postal_code' => $data['postal_code'],

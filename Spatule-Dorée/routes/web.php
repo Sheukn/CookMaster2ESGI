@@ -55,16 +55,17 @@ Route::prefix('users')->name('users.')->group(function () {
 });
 
 
-Route::middleware("auth")->group(function () {
-    Route::get('plans', [PlanController::class, 'index']);
-    Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
-    Route::get('/subscriptions', [PlanController::class, 'index'])->name('subscriptions.index');
-    Route::get('/subscription/checkout/{plan}', [PlanController::class, 'checkout'])->name('subscription');
+Route::middleware('auth')->group(function () {
+    Route::get('plans', [PlanController::class, 'index'])->name('plans.index');
+    Route::get('plans/{plan}', [PlanController::class, 'show'])->name('plans.show');
+    Route::post('/subscriptions', [PlanController::class, 'store'])->name('store.subscription');
+    Route::get('/subscription/checkout/{plan}', [PlanController::class, 'checkout'])->name('subscription.checkout');
     Route::get('/subscription/success', [PlanController::class, 'success'])->name('subscription.success');
 });
 
 
-Route::get('/events', [EventsController::class, 'index'])->name('events.index');
+
+Route::get('/my-events', [EventsController::class, 'myEvents'])->name('events.myEvents');
 
 
 
