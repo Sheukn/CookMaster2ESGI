@@ -19,7 +19,7 @@ import java.io.FileReader;
 import java.net.http.HttpTimeoutException;
 import java.util.ArrayList;
 
-public class userListController {
+public class userListViewController {
 
 
     @FXML
@@ -32,18 +32,12 @@ public class userListController {
     private TableColumn<?, ?> prenomCol;
     @FXML
     private TableColumn<?, ?> subCol;
-    @FXML
-    private TableView<Pokemon> userList;
 
     // Generate random user with random subscription type (Gold, Silver, Bronze) and random id (1-100) and random name and surname and random mail
 
     private ObservableList<User> userData;
     private ArrayList<User> userListArray = new ArrayList<>();
-
-    private ArrayList<Pokemon> PokemonList = new ArrayList<>();
     private ArrayList<String> pokemonType = new ArrayList<>();
-    private  ObservableList<Pokemon> pokemonData;
-
     //Add data to data
 
 
@@ -77,20 +71,6 @@ public class userListController {
 
                     JsonArray typeArray = JsonParser.parseString(String.valueOf(jsonObject.get("types"))).getAsJsonArray();
 
-                    for(JsonElement element : typeArray){
-                        JsonObject typesList = element.getAsJsonObject();
-                        JsonObject types = typesList.get("type").getAsJsonObject();
-                        JsonElement typeName = types.get("name");
-                        pokemonType.add(typeName.getAsString());
-                    }
-
-                    if (pokemonType.size() == 1){
-                        Pokemon pokemon = new Pokemon(responseId.getAsInt(), responseName.getAsString(), pokemonType.get(0));
-                        PokemonList.add(pokemon);
-                    }else{
-                        Pokemon pokemon = new Pokemon(responseId.getAsInt(), responseName.getAsString(), pokemonType.get(0), pokemonType.get(1));
-                        PokemonList.add(pokemon);
-                    }
 
                     pokemonType.clear();
                 } else {
@@ -105,14 +85,10 @@ public class userListController {
                 e.printStackTrace();
             }
         }
-        pokemonData = FXCollections.observableArrayList(PokemonList);
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nomCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         prenomCol.setCellValueFactory(new PropertyValueFactory<>("first_type"));
         mailCol.setCellValueFactory(new PropertyValueFactory<>("second_type"));
-
-
-        userList.setItems(pokemonData);
 
 //        try(FileReader file = new FileReader(filepath)){
 //            JsonElement jsonElement = JsonParser.parseReader(file);

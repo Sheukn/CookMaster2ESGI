@@ -13,7 +13,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class ClientView {
+public class ClientViewController {
 
     @FXML
     private LineChart<?, ?> SellsChart;
@@ -32,14 +32,7 @@ public class ClientView {
     // Generate random data for the charts
     // For the sake of simplicity, the data is generated randomly
     // In a real application, the data would be retrieved from a database
-
-<<<<<<< HEAD:javaApp/Report/src/main/java/reportApp/Application/ClientView.java
-    String filepath = "/     testData/data.json";
-=======
     String filepath = "./testData/data.json";
->>>>>>> 3462c2c6e71bbfba6e7502e54cfc7384b742ef02:javaApp/Report/src/main/java/reportApp/Application/ClientController.java
-
-
     @FXML
     void generate(ActionEvent event) {
         // Clear the charts

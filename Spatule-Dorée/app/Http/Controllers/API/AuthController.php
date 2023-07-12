@@ -185,6 +185,7 @@ class AuthController extends Controller
             $insertToken = User::where('email', $request->email)->update(['api_token' => $token]);
             $user = User::where('email', $request->email)->first();
             $fetchToken = $user->api_token;
+            $fetchIsAdmin = $user->is_admin;
 
 
 
@@ -194,7 +195,9 @@ class AuthController extends Controller
 
                 'message' => 'User Logged In Successfully',
 
-                'token' => $fetchToken
+                'token' => $fetchToken,
+
+                'is_admin' => $fetchIsAdmin
 
             ], 200);
         } catch (\Throwable $th) {
