@@ -133,8 +133,9 @@ class GetController extends Controller{
         }
     }
 
-    public function getRecettesByGastronomy(Request $request, $gastronomy)
-{
+
+
+    public function getRecettesByGastronomy(Request $request, $gastronomy){
     // Récupère les recettes avec l'origine spécifiée
         try {
             $authorizationHeader = $request->header('Authorization');
@@ -156,6 +157,32 @@ class GetController extends Controller{
                 'status' => false,
                 'message' => 'Token is invalid',
             ], 401);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getRecetteById(Request $request, $id){
+        try{
+            $authorizationHeader = $request->header('Authorization');
+            if (!empty($authorizationHeader) && strpos($authorizationHeader, 'Bearer ') === 0) {
+                $token = substr($authorizationHeader, 7);
+
+                $user = User::where('api_token', $token)->first();
+                if($user){
+                    $recette = Recipe::where('id', $id)->first();
+                    // Get ingredients list from pivot table recipes_has_ingredients
+                    $recette->ingredients = $recette->ingredients()->get();
+                    return response()->json([
+                        'status' => true,
+                        'data' => $recette
+                    ], 200);
+                }
+            }
 
         } catch (\Throwable $th) {
             return response()->json([

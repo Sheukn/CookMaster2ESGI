@@ -35,5 +35,11 @@ class Recipe extends Model
      * @var array
 
      */
+
+
+     public function ingredients()
+     {
+         return $this->belongsToMany(Ingredient::class, 'recipe_ingredient')->withPivot('quantity');
+     }
     
 }

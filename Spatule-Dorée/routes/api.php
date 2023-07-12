@@ -34,7 +34,7 @@ Route::get('/auth/getUserData', [GetController::class, 'getUserData']);
 Route::get('/users', [GetController::class, 'getAllUsers']);
 Route::get('/recipes', [GetController::class, 'getRecipes']);
 Route::get('/recipes/{gastronomy}', [GetController::class, 'getRecettesByGastronomy']);
-
+Route::get('/recipe/{id}', [GetController::class, 'getRecetteById']);
 
 
 Route::post('/register', [AuthController::class, 'createUser']);
