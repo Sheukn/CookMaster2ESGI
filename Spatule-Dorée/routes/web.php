@@ -67,6 +67,13 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/my-events', [EventsController::class, 'myEvents'])->name('events.myEvents');
 
+Route::get('/visio', function () {
+    if (Auth::user()) {
+        return view('visio');
+    }
+    return redirect()->route('login');
+})->name('visio');
+
 
 
 // Route::get('/register', [RegisterController::class, 'create'])->name('register.create');

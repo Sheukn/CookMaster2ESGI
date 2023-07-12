@@ -30,6 +30,9 @@
                     <li class="nav-item pe-4">
                         <a class="nav-link" href="{{ route('users.profile.show') }}">Mon profil</a>
                     </li>
+                    <li class="nav-item pe-4">
+                        <a class="nav-link" href="{{ route('chatify') }}">Chat</a>
+                    </li>
                     <li class="nav-item">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
