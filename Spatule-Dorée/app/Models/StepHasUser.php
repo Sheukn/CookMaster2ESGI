@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Certification extends Model
+class StepHasUser extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-
-        'title',
-        'image',
-        'level',
-        'validity_time',
+        'current_step',
+        'user_id',
+        'step_id',
     ];
-
-    protected $table = 'certification';
+    protected $table = 'step_has_user';
 }
