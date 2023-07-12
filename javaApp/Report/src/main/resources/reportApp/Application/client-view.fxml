@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="751.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportApp.Application.ClientViewController">
+<AnchorPane prefHeight="751.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reportApp.Application.ClientViewController">
     <BarChart fx:id="subChart" animated="false" layoutX="14.0" layoutY="14.0" prefHeight="330.0" prefWidth="500.0" title="Répartition Abonnements">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
@@ -26,9 +26,9 @@
           <NumberAxis side="LEFT" />
         </yAxis>
     </LineChart>
-    <PieChart fx:id="revenueChart" animated="false" layoutX="515.0" layoutY="14.0" prefHeight="330.0" prefWidth="500.0" title="Répartition CA" />
+    <PieChart fx:id="revenueChart" animated="false" layoutX="524.0" layoutY="14.0" prefHeight="330.0" prefWidth="500.0" title="Répartition CA" />
     <Button layoutX="483.0" layoutY="674.0" mnemonicParsing="false" onAction="#generate" text="Generate" />
-   <StackedBarChart fx:id="userChart" animated="false" layoutX="515.0" layoutY="344.0" prefHeight="330.0" prefWidth="500.0" title="Nombre de visites">
+   <StackedBarChart fx:id="userChart" animated="false" layoutX="524.0" layoutY="357.0" prefHeight="330.0" prefWidth="500.0" title="Nombre de visites">
      <xAxis>
        <CategoryAxis side="BOTTOM" />
      </xAxis>
@@ -36,4 +36,5 @@
        <NumberAxis side="LEFT" />
      </yAxis>
    </StackedBarChart>
+   <Button fx:id="generatePDF" layoutX="471.0" layoutY="711.0" mnemonicParsing="false" onAction="#generatePDF" text="Generate PDF" />
 </AnchorPane>
