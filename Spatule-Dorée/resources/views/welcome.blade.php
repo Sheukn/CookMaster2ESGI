@@ -17,8 +17,10 @@
     <title>@yield('title', 'Accueil')</title>
 </head>
 
+
 <body>
     @include('front.navbarAccueil')
+
     <section class="banner d-flex justify-content-center align-items-center pt-5">
         <div class="container my-5 py-5">
             <div class="row">
@@ -35,7 +37,27 @@
             </div>
         </div>
     </section>
+    @if (session('success'))
+        <div id="success-alert"
+            class="alert alert-success alert-dismissible fade show text-center d-flex align-items-center justify-content-between"
+            role="alert">
+            <span style="flex-grow: 1; text-align: center;">{{ session('success') }}</span>
+            <p id="close-success" type="button" class="m-0">
+                <i class="fa-solid fa-xmark"></i>
+            </p>
+        </div>
+    @endif
 
+    @if (session('error'))
+        <div id="error-alert"
+            class="alert alert-danger alert-dismissible fade show text-center d-flex align-items-center justify-content-between"
+            role="alert">
+            <span style="flex-grow: 1; text-align: center;">{{ session('error') }}</span>
+            <p id="close-error" type="button" class="m-0">
+                <i class="fa-solid fa-xmark"></i>
+            </p>
+        </div>
+    @endif
     <section class="available merriweather py-5">
         <div class="container">
             <div class="row">

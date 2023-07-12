@@ -69,6 +69,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
                                     @can('manage-users')
                                         <a class="dropdown-item" href="{{ route('admin.users.index') }}"> Liste des
                                             utilisateurs</a>
@@ -76,6 +77,8 @@
                                             évenements</a>
                                         <a class="dropdown-item" href="{{ route('admin.events.create') }}"> Création d'un
                                             évenement</a>
+                                        <a class="dropdown-item" href="{{ route('certifications.index') }}"> Liste des
+                                            certifications</a>
                                         {{-- <a class="dropdown-item" href="{{ route('admin.users.index') }}">Gestion des
                                             abonnements</a> --}}
                                     @endcan

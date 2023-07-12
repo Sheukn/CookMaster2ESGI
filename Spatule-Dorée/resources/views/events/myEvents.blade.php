@@ -19,7 +19,8 @@
                     <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
                         <h5
                             class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500">
-                            <a href="event-details.html" class="text-theme-color">{{ $event->name }}</a>
+                            <a href="{{ route('formation.index', ['formation' => $event->id]) }} "
+                                class="text-theme-color">{{ $event->name }}</a>
                         </h5>
                         <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
                             <li><i class="far fa-clock margin-10px-right"></i> {{ $event->start_event }} -
