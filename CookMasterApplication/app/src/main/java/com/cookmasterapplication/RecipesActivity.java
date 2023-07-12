@@ -1,6 +1,7 @@
 package com.cookmasterapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -97,7 +98,9 @@ public class RecipesActivity extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Recipes r = (Recipes)adapterView.getItemAtPosition(i);
-                Toast.makeText(RecipesActivity.this.getContext(), r.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RecipesActivity.this.getContext(), RecipeViewActivity.class);
+                intent.putExtra("id", r.getId());
+                startActivity(intent);
             }
         });
 
