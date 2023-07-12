@@ -64,10 +64,6 @@ class UserTableSeeder extends Seeder
                 'password' => $password,
                 'email_verified_at' => date('Y-m-d H:i:s'),
                 'is_teacher' => $faker->boolean(20),
-
-
-
-
             ]);
         }
 
@@ -83,11 +79,6 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('Azerty11'),
             'is_teacher' => 1,
             'email_verified_at' => date('Y-m-d H:i:s'),
-
-
-
-
-
         ]);
 
         $adminRole = Role::where('name', 'Admin')->first();
