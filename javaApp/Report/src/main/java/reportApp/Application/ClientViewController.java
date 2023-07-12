@@ -15,6 +15,9 @@ import com.google.gson.JsonParser;
 
 public class ClientViewController {
 
+
+    String token = Token.getInstance().getToken();
+
     @FXML
     private LineChart<?, ?> SellsChart;
 
@@ -32,7 +35,7 @@ public class ClientViewController {
     // Generate random data for the charts
     // For the sake of simplicity, the data is generated randomly
     // In a real application, the data would be retrieved from a database
-    String filepath = "./testData/data.json";
+    String filepath = "./data.json";
     @FXML
     void generate(ActionEvent event) {
         // Clear the charts
@@ -117,4 +120,5 @@ public class ClientViewController {
         revenueChart.getData().add(Sells);
         revenueChart.getData().add(pubData);
     }
+
 }

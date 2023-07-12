@@ -3,120 +3,107 @@ package reportApp.Application;
 import com.google.gson.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.Reader;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpClient;
 import java.io.IOException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.net.http.HttpTimeoutException;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class userListViewController {
+public class UserListViewController {
 
+
+    String token = Token.getInstance().getToken();
 
     @FXML
-    private TableColumn<?, ?> idCol;
+    private TableView<User> userList;
     @FXML
-    private TableColumn<?, ?> mailCol;
+    private TableColumn<User, Integer> idCol;
     @FXML
-    private TableColumn<?, ?> nomCol;
+    private TableColumn<User, String> mailCol;
     @FXML
-    private TableColumn<?, ?> prenomCol;
+    private TableColumn<User, String> nomCol;
     @FXML
-    private TableColumn<?, ?> subCol;
-
-    // Generate random user with random subscription type (Gold, Silver, Bronze) and random id (1-100) and random name and surname and random mail
-
+    private TableColumn<User, String> prenomCol;
+    @FXML
+    private TableColumn<User, String> subCol;
+    @FXML
+    private TableColumn<User, Date> dateCol;
     private ObservableList<User> userData;
-    private ArrayList<User> userListArray = new ArrayList<>();
-    private ArrayList<String> pokemonType = new ArrayList<>();
-    //Add data to data
 
-
-    // Add the data to the different columns
     @FXML
     void generate() {
-        for(int i = 1; i <= 200; i++){
-            String url = "https://pokeapi.co/api/v2/pokemon/" + i;
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .method("GET", HttpRequest.BodyPublishers.noBody())
-                    .build();
-            try {
-                // Make the API call and get the response
-                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-                // Check if the response was successful
-                if (response.statusCode() == 200) {
-                    // Get the response body as a string
-                    String responseBody = response.body();
+        // Clear the table
+        userList.getItems().clear();
 
-                    // Use Gson to parse the response body to a JsonElement
-                    JsonElement jsonElement = JsonParser.parseString(responseBody);
+        Task<HttpResponse<String>> task = new Task<>() {
+            @Override
+            protected HttpResponse<String> call() throws Exception {
+                String url = "https://spatuledoree.fr/api/users";
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(url))
+                        .header("Content-Type", "application/json")
+                        .header("Authorization", "Bearer " + token)
+                        .method("GET", HttpRequest.BodyPublishers.noBody())
+                        .build();
 
-                    // Now you can work with the JsonElement
-                    // For example, you can access its properties using jsonElement.get("propertyName")
-                    JsonObject jsonObject = jsonElement.getAsJsonObject();
-                    JsonElement responseId = jsonObject.get("id");
-                    JsonElement responseName = jsonObject.get("name");
-
-                    JsonArray typeArray = JsonParser.parseString(String.valueOf(jsonObject.get("types"))).getAsJsonArray();
-
-
-                    pokemonType.clear();
-                } else {
-                    // Handle the error response
-                    System.out.println("Error: " + response.statusCode() + " " + response.body());
-                }
-            } catch (IOException e) {
-                // Handle IO exception
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                // Handle interrupted exception
-                e.printStackTrace();
+                return client.send(request, HttpResponse.BodyHandlers.ofString());
             }
-        }
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        prenomCol.setCellValueFactory(new PropertyValueFactory<>("first_type"));
-        mailCol.setCellValueFactory(new PropertyValueFactory<>("second_type"));
+        };
+        task.setOnSucceeded(event -> {
+            HttpResponse<String> response = task.getValue();
+            JsonElement jsonElement = JsonParser.parseString(response.body());
+            JsonObject jsonObject = jsonElement.getAsJsonObject();
+            JsonArray jsonArray = jsonObject.getAsJsonArray("data");
 
-//        try(FileReader file = new FileReader(filepath)){
-//            JsonElement jsonElement = JsonParser.parseReader(file);
-//            JsonObject jsonObject = jsonElement.getAsJsonObject();
-//            JsonElement propertyValue = jsonObject.get("User");
-//
-//            for(JsonElement element : propertyValue.getAsJsonArray()){
-//                JsonObject user = element.getAsJsonObject();
-//                int id = user.get("id").getAsInt();
-//                String name = user.get("name").getAsString();
-//                String firstname = user.get("firstname").getAsString();
-//                String email = user.get("email").getAsString();
-//                String subscription = user.get("subscription").getAsString();
-//
-//                User newUser = new User(id, email, firstname, name, subscription);
-//                userListArray.add(newUser);
-//            }
-//            userData = FXCollections.observableArrayList(userListArray);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        mailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-//        nomCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-//        prenomCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-//        subCol.setCellValueFactory(new PropertyValueFactory<>("sub"));
-//        userList.setItems(userData);
+            String[] subscriptions = { "Gold", "Silver", "Bronze"};
+            userData = FXCollections.observableArrayList();
+
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JsonObject user = jsonArray.get(i).getAsJsonObject();
+                int id = user.get("id").getAsInt();
+                String email = user.get("email").getAsString();
+                String name = user.get("name").getAsString();
+                String firstName = user.get("firstname").getAsString();
+
+                int random = (int) (Math.random() * 3);
+                String subscription = subscriptions[random];
+
+                String dateString = user.get("created_at").getAsString();
+                DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT;
+                Instant instant = Instant.from(formatter.parse(dateString));
+                Date createdAt = Date.from(instant);
+
+                userData.add(new User(id, email, name, firstName, subscription, createdAt));
+            }
+
+            idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            mailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+            nomCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+            prenomCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+            subCol.setCellValueFactory(new PropertyValueFactory<>("subscription"));
+            dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+            userList.setItems(userData);
+        });
+        task.setOnFailed(event -> {
+            Throwable exception = task.getException();
+            exception.printStackTrace();
+        });
+        // Start the task in a new background thread
+        Thread thread = new Thread(task);
+        thread.start();
     }
-
 
 }
